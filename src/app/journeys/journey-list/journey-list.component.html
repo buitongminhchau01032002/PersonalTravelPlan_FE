@@ -1,1 +1,144 @@
-<p class="text-primary">journey-list works!</p>
+<div class="flex flex-col flex-1 space-y-4">
+    <!-- TOP BAR -->
+    <div class="flex justify-between items-center">
+        <div class="space-y-1">
+            <h2 class="font-bold text-2xl">Journey</h2>
+            <p class="text-gray-500 text-sm">Home / Journey</p>
+        </div>
+        <p-button
+            styleClass="btn btn-green !px-8"
+            label="New journey"
+        ></p-button>
+    </div>
+
+    <!-- WHTIE PANEL -->
+    <div class="rounded-lg bg-white flex-1 py-8 px-10">
+        <!-- SEARCH INPUT GROUP -->
+        <div class="flex items-end space-x-8">
+            <div
+                class="grid grid-cols-[auto_1fr_auto_1fr_auto_1fr_auto_1fr] gap-x-4 gap-6 flex-1"
+            >
+                <!-- SEARCH -->
+                <div class="col-span-6">
+                    <span class="p-input-icon-left w-full">
+                        <i class="pi pi-search px-2"></i>
+                        <input
+                            class="input w-full !pl-10"
+                            type="text"
+                            pInputText
+                            placeholder="Search by Name, Description"
+                        />
+                    </span>
+                </div>
+
+                <!-- STATUS -->
+                <span
+                    class="text-gray-600 font-bold flex items-center justify-end ml-6"
+                >
+                    Status
+                </span>
+                <p-dropdown
+                    styleClass="input w-full"
+                    placeholder="Select Status"
+                    optionLabel="name"
+                ></p-dropdown>
+
+                <!-- COUNTRY -->
+                <span class="text-gray-600 font-bold flex items-center">
+                    Country
+                </span>
+                <p-dropdown
+                    styleClass="input w-full"
+                    placeholder="Select country"
+                    optionLabel="name"
+                ></p-dropdown>
+
+                <!-- CURRENCY -->
+                <span
+                    class="text-gray-600 font-bold flex items-center justify-end ml-6"
+                >
+                    Currency
+                </span>
+                <p-dropdown
+                    styleClass="input w-full"
+                    placeholder="Select currency"
+                    optionLabel="name"
+                ></p-dropdown>
+
+                <!-- AMOUNT FROM -->
+                <div class="flex space-x-4 items-center justify-end ml-6">
+                    <span class="text-gray-600 font-bold">Amount</span>
+                    <span class="text-gray-600">From</span>
+                </div>
+
+                <p-dropdown
+                    styleClass="input w-full"
+                    placeholder="Select Status"
+                    optionLabel="name"
+                ></p-dropdown>
+
+                <!-- AMOUNT TO -->
+                <span class="text-gray-600 flex items-center justify-end ml-6">
+                    To
+                </span>
+                <p-dropdown
+                    styleClass="input w-full"
+                    placeholder="Select Status"
+                    optionLabel="name"
+                ></p-dropdown>
+
+                <!-- START DATE FROM -->
+                <div class="flex space-x-4 items-center">
+                    <span class="text-gray-600 font-bold">Start date</span>
+                    <span class="text-gray-600">From</span>
+                </div>
+                <p-calendar
+                    styleClass="w-full"
+                    inputStyleClass="input"
+                    [showClear]="true"
+                ></p-calendar>
+
+                <!-- START DATE TO -->
+                <span class="text-gray-600 flex items-center justify-end ml-6">
+                    To
+                </span>
+                <p-calendar
+                    styleClass="w-full"
+                    inputStyleClass="input"
+                    [showClear]="true"
+                ></p-calendar>
+
+                <!-- END DATE FROM -->
+                <div class="flex space-x-4 items-center justify-end ml-6">
+                    <span class="text-gray-600 font-bold">End date</span>
+                    <span class="text-gray-600">From</span>
+                </div>
+                <p-calendar
+                    styleClass="w-full"
+                    inputStyleClass="input"
+                    [showClear]="true"
+                ></p-calendar>
+
+                <!-- END DATE TO -->
+                <span class="text-gray-600 flex items-center justify-end ml-6">
+                    To
+                </span>
+                <p-calendar
+                    styleClass="w-full"
+                    inputStyleClass="input"
+                    [showClear]="true"
+                ></p-calendar>
+            </div>
+            <div class="flex space-x-3">
+                <p-button
+                    styleClass="btn btn-primary"
+                    label="Search"
+                ></p-button>
+                <p-button
+                    styleClass="p-button-outlined btn-outline"
+                    label="Reset"
+                ></p-button>
+            </div>
+        </div>
+    </div>
+</div>

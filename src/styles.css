@@ -2,23 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-body {
-    font-family: var(--font-family);
+@layer base {
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    html {
+        @apply bg-bg;
+    }
+    body {
+        font-family: "Roboto", sans-serif;
+    }
 }
 
 @layer components {
     .btn {
         @apply !rounded-md !border-none focus:!shadow-none;
     }
-    .btn-primary {
+    .btn.btn-primary {
         @apply !bg-primary hover:!bg-primary/90;
     }
+    .btn.btn-green {
+        @apply !bg-green-light hover:!bg-emerald-500;
+    }
+    .btn-outline {
+        @apply !border-none !ring-1 !ring-primary !text-gray-700;
+    }
     .input {
-        @apply !bg-bg-input;
+        @apply !bg-bg-input !rounded-md focus-within:!shadow-none;
+    }
+
+    app-journey-list {
+        @apply flex flex-col flex-1 p-10;
     }
 }

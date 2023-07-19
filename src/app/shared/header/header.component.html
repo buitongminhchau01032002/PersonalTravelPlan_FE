@@ -1,3 +1,40 @@
-<div class="bg-primary h-14 fixed flex justify-between items-center px-3 top-0 left-0 right-0">
-    <div>fasdf</div>
+<div
+    class="bg-primary h-16 fixed flex justify-between items-center px-10 top-0 left-0 right-0"
+>
+    <!-- LEFT -->
+    <div class="flex items-center">
+        <a routerLink="/"><img src="assets/logo.png" class="h-14" /></a>
+
+        <!-- MENU -->
+        <div class="flex items-center ml-12 space-x-3">
+            <a
+                class="inline-block px-5 py-2 text-white/80 font-medium cursor-pointer rounded-lg"
+                routerLinkActive="!bg-white !text-black/80"
+                routerLink="/"
+            >
+                Journey
+            </a>
+            <a
+                class="inline-block px-5 py-2 text-white/80 font-medium cursor-pointer rounded-lg"
+                routerLinkActive="!bg-white !text-black/80"
+                routerLink="/company"
+            >
+                Company
+            </a>
+            <a
+                class="inline-block px-5 py-2 text-white/80 font-medium cursor-pointer rounded-lg"
+                routerLinkActive="!bg-white !text-black/80"
+                routerLink="/customer"
+            >
+                Customer
+            </a>
+        </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="flex items-center space-x-2 text-sm font-medium">
+        <button class="text-white">EN</button>
+        <span class="text-white">|</span>
+        <button class="text-white/70">FR</button>
+    </div>
 </div>
