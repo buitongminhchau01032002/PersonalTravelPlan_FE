@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-}
 * {
     margin: 0;
     padding: 0;
@@ -11,4 +9,16 @@
 }
 body {
     font-family: var(--font-family);
+}
+
+@layer components {
+    .btn {
+        @apply !rounded-md !border-none focus:!shadow-none;
+    }
+    .btn-primary {
+        @apply !bg-primary hover:!bg-primary/90;
+    }
+    .input {
+        @apply !bg-bg-input;
+    }
 }

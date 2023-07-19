@@ -1,1 +1,39 @@
 <p>journey-create works!</p>
+
+<div class="bg-bg p-5">
+    <div class="flex flex-col space-y-4 p-5 bg-white">
+        <p-button
+            styleClass="btn btn-primary"
+            label="Check"
+            icon="pi pi-check"
+        ></p-button>
+        <input class="input" type="text" pInputText />
+        <p-inputNumber
+            styleClass="w-full"
+            inputStyleClass="input"
+            inputId="integeronly"
+        ></p-inputNumber>
+        <textarea rows="5" pInputTextarea class="input"></textarea>
+        <p-dropdown
+            styleClass="input w-full"
+            placeholder="Select Currency"
+            optionLabel="name"
+        ></p-dropdown>
+        <p-multiSelect
+            styleClass="input w-full"
+            [options]="places"
+            [(ngModel)]="selectedPlaces"
+            optionLabel="name"
+            placeholder="Select places"
+            [filter]="false"
+        ></p-multiSelect>
+
+        <p-calendar
+            class="!w-[400px]"
+            styleClass="!w-[400px]"
+            inputStyleClass="input"
+            [(ngModel)]="date"
+            [showClear]="true"
+        ></p-calendar>
+    </div>
+</div>
