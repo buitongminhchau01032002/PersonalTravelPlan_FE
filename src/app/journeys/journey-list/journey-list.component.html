@@ -139,7 +139,12 @@
                         <td class="max-w-[280px] overflow-hidden text-ellipsis whitespace-nowrap">
                             {{ journey.description }}
                         </td>
-                        <td class="whitespace-nowrap">{{ journey.country.name }}</td>
+                        <td class="whitespace-nowrap">
+                            <div class="space-x-2">
+                                <span class="fi" [ngClass]="'fi-' + journey.country.code"></span>
+                                <span>{{ journey.country.name }}</span>
+                            </div>
+                        </td>
                         <td class="whitespace-nowrap !text-center">
                             {{ journey.startDate | date: 'dd.MM.YYY' }}
                         </td>
@@ -192,12 +197,17 @@
                     </tr>
                 </ng-template>
             </p-table>
-            <p-paginator
-                (onPageChange)="onPageChange($event)"
-                [first]="first"
-                [rows]="5"
-                [totalRecords]="totalRecords"
-            ></p-paginator>
+            <div class="flex items-center justify-end">
+                <p class="text-gray-500">
+                    Showing {{ first }} to {{ first + 5 }} of {{ totalRecords }} entries
+                </p>
+                <p-paginator
+                    (onPageChange)="onPageChange($event)"
+                    [first]="first"
+                    [rows]="5"
+                    [totalRecords]="totalRecords"
+                ></p-paginator>
+            </div>
         </div>
     </div>
 </div>

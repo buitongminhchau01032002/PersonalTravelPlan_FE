@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { JourneyService } from '../journey.service';
 import { Journey } from 'src/app/shared/models/journey.model';
 import { PaginatorState } from 'primeng/paginator';
-import { HttpParams } from '@angular/common/http';
 
 @Component({
     selector: 'app-journey-list',
