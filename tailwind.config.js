@@ -9,11 +9,11 @@ module.exports = {
                 bg: '#F5F5F5',
                 'bg-input': '#F5F8FA',
                 'status-planning': '#E8FFF3',
-                'status-finished': '#00B2FF',
+                'status-finished': '#e2f6ff',
                 'status-inprogess': '#FFF8DD',
                 danger: '#F1416C',
             },
         },
     },
-    plugins: ['prettier-plugin-tailwindcss'],
+    plugins: [],
 };

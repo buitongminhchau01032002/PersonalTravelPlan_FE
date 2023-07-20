@@ -1,0 +1,10 @@
+<p
+    class="inline-block rounded px-3 py-0.5 text-sm font-medium"
+    [ngClass]="{
+        'bg-status-inprogess text-yellow-700': status === 'In progress',
+        'bg-status-planning text-green-700': status === 'Planning',
+        'bg-status-finished text-cyan-700': status === 'Finished'
+    }"
+>
+    {{ status }}
+</p>
