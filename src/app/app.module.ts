@@ -14,6 +14,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { CalendarModule } from 'primeng/calendar';
 import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -49,6 +50,7 @@ import { StatusBadgeComponent } from './shared/components/status-badge/status-ba
         CalendarModule,
         TableModule,
         PaginatorModule,
+        ProgressSpinnerModule,
     ],
     providers: [JourneyService],
     bootstrap: [AppComponent],

@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Journey, JourneyStaus } from '../shared/models/journey.model';
+import { Journey } from '../shared/models/journey.model';
 import { API } from '../constants';
 
 @Injectable()
