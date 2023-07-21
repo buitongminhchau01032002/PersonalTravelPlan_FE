@@ -6,7 +6,7 @@
     </div>
 
     <!-- WHTIE PANEL -->
-    <div class="flex flex-1 flex-col overflow-hidden rounded-lg bg-white">
+    <form class="flex flex-1 flex-col overflow-hidden rounded-lg bg-white">
         <div class="border-b px-8 py-4 text-xl font-medium">New journey info</div>
         <div class="flex-1 px-8 py-16">
             <div class="grid-template-cols mx-auto grid max-w-[1200px] gap-x-6 gap-y-8">
@@ -19,6 +19,7 @@
                         name="name"
                         pInputText
                         placeholder="Name"
+                        [(ngModel)]="journeyForm.name"
                     />
                 </div>
 
@@ -31,6 +32,7 @@
                         class="input w-full resize-none"
                         name="description"
                         placeholder="Description"
+                        [(ngModel)]="journeyForm.description"
                     ></textarea>
                 </div>
 
@@ -43,6 +45,8 @@
                     optionLabel="name"
                     [showClear]="true"
                     name="country"
+                    [options]="countries"
+                    [(ngModel)]="journeyForm.countryId"
                 ></p-dropdown>
 
                 <!-- PLACE -->
@@ -50,9 +54,10 @@
                 <p-multiSelect
                     styleClass="input w-full"
                     [options]="places"
-                    [(ngModel)]="selectedPlaces"
+                    [(ngModel)]="journeyForm.placeIds"
                     optionLabel="name"
                     placeholder="Select places"
+                    name="places"
                     [filter]="false"
                 ></p-multiSelect>
 
@@ -63,6 +68,7 @@
                     inputStyleClass="input"
                     [showClear]="true"
                     name="startDate"
+                    [(ngModel)]="journeyForm.startDate"
                 ></p-calendar>
 
                 <!-- END DATE -->
@@ -72,6 +78,7 @@
                     inputStyleClass="input"
                     [showClear]="true"
                     name="endDate"
+                    [(ngModel)]="journeyForm.endDate"
                 ></p-calendar>
 
                 <!-- CURRENCY -->
@@ -83,6 +90,8 @@
                     optionLabel="name"
                     [showClear]="true"
                     name="currency"
+                    [options]="currencies"
+                    [(ngModel)]="journeyForm.currencyId"
                 ></p-dropdown>
 
                 <!-- AMOUNT -->
@@ -91,6 +100,7 @@
                     styleClass="!w-full"
                     inputStyleClass="input !w-full"
                     name="amount"
+                    [(ngModel)]="journeyForm.amount"
                 ></p-inputNumber>
 
                 <!-- DURATION -->
@@ -100,7 +110,8 @@
                         <p-inputNumber
                             styleClass="max-w-[60px]"
                             inputStyleClass="input !w-full"
-                            name="durationFrom"
+                            name="durationDay"
+                            [(ngModel)]="journeyForm.durationDay"
                         ></p-inputNumber>
                         <span class="font-bold text-gray-600">day (s)</span>
                     </div>
@@ -108,7 +119,8 @@
                         <p-inputNumber
                             styleClass="max-w-[60px]"
                             inputStyleClass="input !w-full"
-                            name="durationTo"
+                            name="durationNight"
+                            [(ngModel)]="journeyForm.durationNight"
                         ></p-inputNumber>
                         <span class="font-bold text-gray-600">night (s)</span>
                     </div>
@@ -121,6 +133,8 @@
                     placeholder="Select status"
                     [showClear]="true"
                     name="status"
+                    [options]="allStatus"
+                    [(ngModel)]="journeyForm.status"
                 ></p-dropdown>
             </div>
         </div>
@@ -129,7 +143,11 @@
                 styleClass="p-button-text btn !font-medium !px-8 !text-gray-600"
                 label="Discard"
             ></p-button>
-            <p-button styleClass="btn btn-primary !px-8 " label="Save"></p-button>
+            <p-button
+                styleClass="btn btn-primary !px-8 "
+                label="Save"
+                (onClick)="onCreateJourney()"
+            ></p-button>
         </div>
-    </div>
+    </form>
 </div>

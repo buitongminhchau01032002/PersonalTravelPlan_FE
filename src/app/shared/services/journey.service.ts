@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Journey } from '../models/journey.model';
+import { CreateJourney, Journey } from '../models/journey.model';
 import { API } from '../../constants';
 
 @Injectable()
@@ -12,6 +12,10 @@ export class JourneyService {
         return this.http.get<any>(`${API}/Journey`, {
             params,
         });
+    }
+
+    createJourney(body: CreateJourney): Observable<Journey> {
+        return this.http.post<Journey>(`${API}/Journey`, body);
     }
 
     private cloneJourneys(journeys: Journey[]): Journey[] {
