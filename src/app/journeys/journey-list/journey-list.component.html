@@ -197,7 +197,7 @@
                                         class="fi"
                                         [ngClass]="'fi-' + journey.country.code"
                                     ></span>
-                                    <span>{{ journey.country.name }}</span>
+                                    <span>{{ journey.country?.name }}</span>
                                 </div>
                             </td>
                             <td class="whitespace-nowrap !text-center">
@@ -206,7 +206,7 @@
                             <td class="whitespace-nowrap !text-center">
                                 {{ journey.endDate | date: 'dd.MM.YYY' }}
                             </td>
-                            <td>{{ journey.currency.name }}</td>
+                            <td>{{ journey.currency?.name }}</td>
                             <td class="!text-right">
                                 {{ journey.amount | number: '1.0-0' }}
                             </td>

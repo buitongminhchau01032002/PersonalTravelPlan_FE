@@ -34,6 +34,34 @@ export class CreateJourney {
         public countryId?: number,
         public currencyId?: number,
         public amount?: number,
+        public startDate?: string,
+        public endDate?: string,
+        public durationDay?: number,
+        public durationNight?: number,
+        public placeIds?: number[],
+        public status?: JourneyStaus
+    ) {
+        this.name = name;
+        this.description = description;
+        this.countryId = countryId;
+        this.currencyId = currencyId;
+        this.amount = amount;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.durationDay = durationDay;
+        this.durationNight = durationNight;
+        this.placeIds = placeIds;
+        this.status = status;
+    }
+}
+
+export class CreateJourneyForm {
+    constructor(
+        public name?: string,
+        public description?: string,
+        public countryId?: number,
+        public currencyId?: number,
+        public amount?: number,
         public startDate?: Date,
         public endDate?: Date,
         public durationDay?: number,

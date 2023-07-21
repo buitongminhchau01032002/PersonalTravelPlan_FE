@@ -32,4 +32,10 @@
     .input {
         @apply !rounded-md !bg-bg-input focus-within:!shadow-none;
     }
+    .input.ng-invalid.ng-touched {
+        @apply !border-danger;
+    }
+    .ng-invalid.ng-touched:not(form) .input {
+        @apply !border-danger;
+    }
 }

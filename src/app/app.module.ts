@@ -15,6 +15,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ToastModule } from 'primeng/toast';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +27,8 @@ import { JourneyService } from './shared/services/journey.service';
 import { StatusBadgeComponent } from './shared/components/status-badge/status-badge.component';
 import { CurrencyService } from './shared/services/currency.service';
 import { CountryService } from './shared/services/country.service';
+import { MessageService } from 'primeng/api';
+import { AfterDateValidatorDirective } from './shared/validator-directive/afterDateValidator.directive';
 
 @NgModule({
     declarations: [
@@ -35,6 +38,7 @@ import { CountryService } from './shared/services/country.service';
         JourneyCreateComponent,
         JourneyEditComponent,
         StatusBadgeComponent,
+        AfterDateValidatorDirective,
     ],
     imports: [
         BrowserModule,
@@ -53,8 +57,9 @@ import { CountryService } from './shared/services/country.service';
         TableModule,
         PaginatorModule,
         ProgressSpinnerModule,
+        ToastModule,
     ],
-    providers: [JourneyService, CurrencyService, CountryService],
+    providers: [JourneyService, CurrencyService, CountryService, MessageService],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
