@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { JourneyService } from '../journey.service';
+import { JourneyService } from '../../shared/services/journey.service';
 import { Journey, JourneyStaus } from 'src/app/shared/models/journey.model';
 import { PaginatorState } from 'primeng/paginator';
+import { Currency } from 'src/app/shared/models/currency.model';
+import { CurrencyService } from 'src/app/shared/services/currency.service';
+import { Country } from 'src/app/shared/models/country.model';
+import { CountryService } from 'src/app/shared/services/country.service';
 
 type FilterQuery = {
     search?: string;
@@ -24,13 +28,19 @@ type FilterQuery = {
 export class JourneyListComponent implements OnInit {
     journeys: Journey[] = [];
     selectedJourneys: Journey[] = [];
+    currencies: Currency[] = [];
+    countries: Country[] = [];
+    allStatus: JourneyStaus[] = ['Planning', 'In progress', 'Finished'];
     page: number = 1;
     totalRecords: number = 0;
-    loading: boolean = false;
     filterQueryForm: FilterQuery = {};
     filterQuery: { [key: string]: string | number | boolean } = {};
-    allStatus: JourneyStaus[] = ['Planning', 'In progress', 'Finished'];
-    constructor(private journeySevice: JourneyService) {}
+    loading: boolean = false;
+    constructor(
+        private journeySevice: JourneyService,
+        private currencyService: CurrencyService,
+        private countryService: CountryService
+    ) {}
 
     ngOnInit(): void {
         this.loading = true;
@@ -38,6 +48,12 @@ export class JourneyListComponent implements OnInit {
             this.journeys = body?.data;
             this.totalRecords = body?.total;
             this.loading = false;
+        });
+        this.currencyService.getCurrencies().subscribe((body: Currency[]) => {
+            this.currencies = body;
+        });
+        this.countryService.getCountries().subscribe((body: Country[]) => {
+            this.countries = body;
         });
     }
 
@@ -57,6 +73,7 @@ export class JourneyListComponent implements OnInit {
     }
 
     onFilter() {
+        console.log('🍎', this.filterQueryForm);
         this.filterQuery = this.getFilterQueryFromForm();
         this.loading = true;
         this.page = 1;
@@ -114,6 +131,15 @@ export class JourneyListComponent implements OnInit {
         }
         if (this.filterQueryForm.endDateTo) {
             query['endDateTo'] = this.filterQueryForm.endDateTo.toISOString().substring(0, 10);
+        }
+        if (this.filterQueryForm.status) {
+            query['status'] = this.filterQueryForm.status;
+        }
+        if (this.filterQueryForm.currencyId) {
+            query['currencyId'] = this.filterQueryForm.currencyId;
+        }
+        if (this.filterQueryForm.countryId) {
+            query['countryId'] = this.filterQueryForm.countryId;
         }
         return query as { [key: string]: number | string | boolean };
     }

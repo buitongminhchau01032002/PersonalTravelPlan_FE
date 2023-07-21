@@ -22,8 +22,10 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { JourneyListComponent } from './journeys/journey-list/journey-list.component';
 import { JourneyCreateComponent } from './journeys/journey-create/journey-create.component';
 import { JourneyEditComponent } from './journeys/journey-edit/journey-edit.component';
-import { JourneyService } from './journeys/journey.service';
+import { JourneyService } from './shared/services/journey.service';
 import { StatusBadgeComponent } from './shared/components/status-badge/status-badge.component';
+import { CurrencyService } from './shared/services/currency.service';
+import { CountryService } from './shared/services/country.service';
 
 @NgModule({
     declarations: [
@@ -52,7 +54,7 @@ import { StatusBadgeComponent } from './shared/components/status-badge/status-ba
         PaginatorModule,
         ProgressSpinnerModule,
     ],
-    providers: [JourneyService],
+    providers: [JourneyService, CurrencyService, CountryService],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
