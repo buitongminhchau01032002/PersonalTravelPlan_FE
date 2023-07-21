@@ -14,6 +14,9 @@ module.exports = {
                 danger: '#F1416C',
             },
         },
+        screens: {
+            md: { max: '960px' },
+        },
     },
     plugins: [],
 };

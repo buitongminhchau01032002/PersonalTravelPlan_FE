@@ -1,0 +1,7 @@
+:host {
+    @apply flex flex-1 flex-col p-10;
+}
+
+.grid-template-cols {
+    grid-template-columns: max-content minmax(200px, 350px) auto minmax(200px, 350px);
+}

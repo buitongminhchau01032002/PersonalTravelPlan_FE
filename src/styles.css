@@ -12,7 +12,7 @@
         @apply bg-bg;
     }
     body {
-        font-family: "Roboto", sans-serif;
+        font-family: 'Roboto', sans-serif;
     }
 }
 
@@ -27,13 +27,9 @@
         @apply !bg-green-light hover:!bg-emerald-500;
     }
     .btn-outline {
-        @apply !border-none !ring-1 !ring-primary !text-gray-700;
+        @apply !border-none !text-gray-700 !ring-1 !ring-primary;
     }
     .input {
-        @apply !bg-bg-input !rounded-md focus-within:!shadow-none;
-    }
-
-    app-journey-list {
-        @apply flex flex-col flex-1 p-10;
+        @apply !rounded-md !bg-bg-input focus-within:!shadow-none;
     }
 }

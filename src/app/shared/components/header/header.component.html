@@ -1,28 +1,26 @@
-<div
-    class="bg-primary h-16 fixed flex justify-between items-center px-10 top-0 left-0 right-0"
->
+<div class="fixed left-0 right-0 top-0 flex h-16 items-center justify-between bg-primary px-10">
     <!-- LEFT -->
     <div class="flex items-center">
         <a routerLink="/"><img src="assets/logo.png" class="h-14" /></a>
 
         <!-- MENU -->
-        <div class="flex items-center ml-12 space-x-3">
+        <div class="ml-12 flex items-center space-x-3 md:hidden">
             <a
-                class="inline-block px-5 py-2 text-white/80 font-medium cursor-pointer rounded-lg"
+                class="inline-block cursor-pointer rounded-lg px-5 py-2 font-medium text-white/80"
                 routerLinkActive="!bg-white !text-black/80"
                 routerLink="/"
             >
                 Journey
             </a>
             <a
-                class="inline-block px-5 py-2 text-white/80 font-medium cursor-pointer rounded-lg"
+                class="inline-block cursor-pointer rounded-lg px-5 py-2 font-medium text-white/80"
                 routerLinkActive="!bg-white !text-black/80"
                 routerLink="/company"
             >
                 Company
             </a>
             <a
-                class="inline-block px-5 py-2 text-white/80 font-medium cursor-pointer rounded-lg"
+                class="inline-block cursor-pointer rounded-lg px-5 py-2 font-medium text-white/80"
                 routerLinkActive="!bg-white !text-black/80"
                 routerLink="/customer"
             >
