@@ -124,10 +124,14 @@
                         name="endDate"
                         [(ngModel)]="journeyForm.endDate"
                         #endDateCtrl="ngModel"
+                        appAfterDateValidator="startDate"
                     ></p-calendar>
                     <div class="mt-1 h-6 text-sm text-danger">
                         <span *ngIf="endDateCtrl.touched && endDateCtrl.errors?.['required']">
                             End date is required!
+                        </span>
+                        <span *ngIf="endDateCtrl.touched && endDateCtrl.errors?.['afterDate']">
+                            End date must be after start date!
                         </span>
                     </div>
                 </div>

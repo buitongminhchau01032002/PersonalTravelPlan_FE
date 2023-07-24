@@ -1,34 +1,45 @@
-import { Directive, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { NG_VALIDATORS, Validator, AbstractControl, ValidationErrors } from '@angular/forms';
+import { Attribute, Directive, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+    NG_VALIDATORS,
+    Validator,
+    AbstractControl,
+    ValidationErrors,
+    FormControl,
+} from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Directive({
     selector: '[appAfterDateValidator]',
     providers: [
         {
             provide: NG_VALIDATORS,
-            useClass: AfterDateValidatorDirective,
+            useExisting: AfterDateValidatorDirective,
             multi: true,
         },
     ],
 })
-export class AfterDateValidatorDirective implements Validator, OnChanges {
-    @Input() afterDate?: Date;
+export class AfterDateValidatorDirective implements Validator {
+    constructor(@Attribute('appAfterDateValidator') public beforeDateName: string) {}
 
     validate(c: AbstractControl): ValidationErrors | null {
-        if (c.value && this.afterDate && c.value <= this.afterDate) {
-            return {
-                afterDate: true,
-            };
+        // Get control
+        const beforeDate: AbstractControl | null = c.root.get(this.beforeDateName);
+        const thisDate: AbstractControl = c;
+
+        // check null
+        if (!beforeDate?.value || !thisDate.value) {
+            return null;
         }
-        return null;
-    }
-    onChange: (() => void) | undefined;
-    registerOnValidatorChange(fn: () => void): void {
-        this.onChange = fn;
-    }
-    ngOnChanges(changes: SimpleChanges): void {
-        if ('afterDate' in changes && this.onChange) {
-            this.onChange();
+
+        // listen beforeDate change to revalidate thisDate
+        if (beforeDate) {
+            const subscription: Subscription = beforeDate.valueChanges.subscribe(() => {
+                thisDate.updateValueAndValidity();
+                subscription.unsubscribe();
+            });
         }
+
+        // return validate result
+        return thisDate.value <= beforeDate.value ? { afterDate: true } : null;
     }
 }
