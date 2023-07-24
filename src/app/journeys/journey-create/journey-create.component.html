@@ -105,6 +105,7 @@
                         name="startDate"
                         [(ngModel)]="journeyForm.startDate"
                         [required]="true"
+                        (ngModelChange)="onChangeStartOrEndDateChange()"
                         #startDateCtrl="ngModel"
                     ></p-calendar>
                     <div class="mt-1 text-sm text-danger">
@@ -123,6 +124,7 @@
                         [showClear]="true"
                         name="endDate"
                         [(ngModel)]="journeyForm.endDate"
+                        (ngModelChange)="onChangeStartOrEndDateChange()"
                         #endDateCtrl="ngModel"
                         appAfterDateValidator="startDate"
                     ></p-calendar>

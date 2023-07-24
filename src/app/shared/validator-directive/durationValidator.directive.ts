@@ -13,18 +13,22 @@ import { Subscription } from 'rxjs';
     ],
 })
 export class DurationValidator implements Validator {
+    private subscription: Subscription | null = null;
     constructor(@Attribute('durationValidator') public otherDurationName: string) {}
 
     validate(c: AbstractControl): ValidationErrors | null {
+        if (this.subscription) {
+            this.subscription.unsubscribe();
+            this.subscription = null;
+        }
         // get control
         const thisDuration: AbstractControl = c;
         const otherDuration: AbstractControl | null = c.root.get(this.otherDurationName);
 
         // listen other change to revalidate
         if (otherDuration) {
-            const subscription: Subscription = otherDuration.valueChanges.subscribe(() => {
+            this.subscription = otherDuration.valueChanges.subscribe(() => {
                 thisDuration.updateValueAndValidity();
-                subscription.unsubscribe();
             });
         }
 

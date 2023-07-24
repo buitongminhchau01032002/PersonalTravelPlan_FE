@@ -13,28 +13,39 @@ import { Subscription } from 'rxjs';
     ],
 })
 export class DurationMatchDateValidator implements Validator {
+    private startDateSubscription: Subscription | null = null;
+    private endDateSubscription: Subscription | null = null;
     constructor(
         @Attribute('startDateName') public startDateName: string,
         @Attribute('endDateName') public endDateName: string
     ) {}
 
     validate(c: AbstractControl): ValidationErrors | null {
+        if (this.startDateSubscription) {
+            this.startDateSubscription.unsubscribe();
+            this.startDateSubscription = null;
+        }
+        if (this.endDateSubscription) {
+            this.endDateSubscription.unsubscribe();
+            this.endDateSubscription = null;
+        }
+
         // get control
         const duration: AbstractControl = c;
         const startDate: AbstractControl | null = c.root.get(this.startDateName);
         const endDate: AbstractControl | null = c.root.get(this.endDateName);
 
+        console.log('validate');
+
         // listen other change to revalidate
         if (startDate) {
-            const subscription: Subscription = startDate.valueChanges.subscribe(() => {
+            this.startDateSubscription = startDate.valueChanges.subscribe(() => {
                 duration.updateValueAndValidity();
-                subscription.unsubscribe();
             });
         }
         if (endDate) {
-            const subscription: Subscription = endDate.valueChanges.subscribe(() => {
+            this.endDateSubscription = endDate.valueChanges.subscribe(() => {
                 duration.updateValueAndValidity();
-                subscription.unsubscribe();
             });
         }
 
@@ -46,10 +57,8 @@ export class DurationMatchDateValidator implements Validator {
             return null;
         }
 
-        console.log(endDate.value - startDate.value);
+        //const distanceDate = Math.ceil((endDate.value - startDate.value) / (1000 * 60 * 60 * 24));
 
-        const distanceDate = Math.ceil((endDate.value - startDate.value) / (1000 * 60 * 60 * 24));
-
-        return duration.value > distanceDate + 1 ? { matchDate: true } : null;
+        return duration.value > 3 + 1 ? { matchDate: true } : null;
     }
 }

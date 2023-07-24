@@ -19,18 +19,23 @@ import { Subscription } from 'rxjs';
     ],
 })
 export class AfterDateValidatorDirective implements Validator {
+    private subscription: Subscription | null = null;
     constructor(@Attribute('appAfterDateValidator') public beforeDateName: string) {}
 
     validate(c: AbstractControl): ValidationErrors | null {
+        if (this.subscription) {
+            this.subscription.unsubscribe();
+            this.subscription = null;
+        }
+
         // Get control
         const beforeDate: AbstractControl | null = c.root.get(this.beforeDateName);
         const thisDate: AbstractControl = c;
 
         // listen beforeDate change to revalidate thisDate
         if (beforeDate) {
-            const subscription: Subscription = beforeDate.valueChanges.subscribe(() => {
+            this.subscription = beforeDate.valueChanges.subscribe(() => {
                 thisDate.updateValueAndValidity();
-                subscription.unsubscribe();
             });
         }
 

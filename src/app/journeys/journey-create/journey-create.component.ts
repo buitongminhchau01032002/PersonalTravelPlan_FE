@@ -54,6 +54,12 @@ export class JourneyCreateComponent implements OnInit {
         this.journeyForm.placeIds = [];
     }
 
+    onChangeStartOrEndDateChange() {
+        // if (this.journeyForm.endDate && this.journeyForm.startDate) {
+        //     console.log(this.journeyForm.endDate.getTime() - this.journeyForm.startDate.getTime());
+        // }
+    }
+
     onSubmit(f: NgForm) {
         console.log(f);
 
