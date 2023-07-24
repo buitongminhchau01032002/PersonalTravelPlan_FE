@@ -11,6 +11,7 @@ const routes: Routes = [
     { path: 'journey/create', component: JourneyCreateComponent },
     { path: 'journey/edit/:id', component: JourneyEditComponent },
     { path: 'error', component: ErrorPageComponent },
+    { path: '**', pathMatch: 'full', component: ErrorPageComponent },
 ];
 
 @NgModule({

@@ -1,0 +1,7 @@
+:host {
+    @apply flex flex-1 flex-col p-10;
+}
+
+.oops {
+    font-family: 'Lumanosimo', cursive;
+}

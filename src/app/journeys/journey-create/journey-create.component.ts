@@ -94,8 +94,7 @@ export class JourneyCreateComponent implements OnInit {
                     });
                 } else {
                     console.log('🍉 Network error');
-                    // todo: create error page
-                    this.router.navigate(['/']);
+                    this.router.navigate(['/error']);
                 }
             },
         });
