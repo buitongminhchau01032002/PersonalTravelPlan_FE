@@ -36,6 +36,8 @@ export class JourneyListComponent implements OnInit {
     filterQueryForm: FilterQuery = {};
     filterQuery: { [key: string]: string | number | boolean } = {};
     loading: boolean = false;
+    idToDelete: number | null = null;
+
     constructor(
         private journeySevice: JourneyService,
         private currencyService: CurrencyService,
@@ -141,5 +143,35 @@ export class JourneyListComponent implements OnInit {
             query['countryId'] = this.filterQueryForm.countryId;
         }
         return query as { [key: string]: number | string | boolean };
+    }
+
+    onDeleteJourney(id: number) {
+        this.idToDelete = id;
+    }
+
+    onCancelDeleteJourney() {
+        this.idToDelete = null;
+    }
+
+    onConfirmDeleteJourney() {
+        console.log('🔱 Delete Journey ', this.idToDelete);
+        if (this.idToDelete) {
+            this.journeySevice.deleteJourney(this.idToDelete ?? 0).subscribe((body: any) => {
+                this.idToDelete = null;
+
+                this.filterQuery = this.getFilterQueryFromForm();
+                this.loading = true;
+                this.journeySevice
+                    .getJourneys({
+                        page: this.page,
+                        ...this.filterQuery,
+                    })
+                    .subscribe((body: any) => {
+                        this.journeys = body?.data;
+                        this.totalRecords = body?.total;
+                        this.loading = false;
+                    });
+            });
+        }
     }
 }

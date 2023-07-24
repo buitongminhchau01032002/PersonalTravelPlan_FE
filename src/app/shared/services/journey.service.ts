@@ -33,6 +33,10 @@ export class JourneyService {
         );
     }
 
+    deleteJourney(id: number): Observable<any> {
+        return this.http.delete<{ id: number }>(`${API}/Journey/${id}`);
+    }
+
     private cloneJourneys(journeys: Journey[]): Journey[] {
         return structuredClone(journeys) as Journey[];
     }
