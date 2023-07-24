@@ -35,8 +35,6 @@ export class DurationMatchDateValidator implements Validator {
         const startDate: AbstractControl | null = c.root.get(this.startDateName);
         const endDate: AbstractControl | null = c.root.get(this.endDateName);
 
-        console.log('validate');
-
         // listen other change to revalidate
         if (startDate) {
             this.startDateSubscription = startDate.valueChanges.subscribe(() => {
