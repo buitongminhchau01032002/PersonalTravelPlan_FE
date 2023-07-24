@@ -29,6 +29,8 @@ import { CurrencyService } from './shared/services/currency.service';
 import { CountryService } from './shared/services/country.service';
 import { MessageService } from 'primeng/api';
 import { AfterDateValidatorDirective } from './shared/validator-directive/afterDateValidator.directive';
+import { GreaterThanValidator } from './shared/validator-directive/greaterThanValidator.directive';
+import { DurationValidator } from './shared/validator-directive/durationValidator.directive';
 
 @NgModule({
     declarations: [
@@ -39,6 +41,8 @@ import { AfterDateValidatorDirective } from './shared/validator-directive/afterD
         JourneyEditComponent,
         StatusBadgeComponent,
         AfterDateValidatorDirective,
+        GreaterThanValidator,
+        DurationValidator,
     ],
     imports: [
         BrowserModule,

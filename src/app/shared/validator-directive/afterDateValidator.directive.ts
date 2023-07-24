@@ -26,17 +26,17 @@ export class AfterDateValidatorDirective implements Validator {
         const beforeDate: AbstractControl | null = c.root.get(this.beforeDateName);
         const thisDate: AbstractControl = c;
 
-        // check null
-        if (!beforeDate?.value || !thisDate.value) {
-            return null;
-        }
-
         // listen beforeDate change to revalidate thisDate
         if (beforeDate) {
             const subscription: Subscription = beforeDate.valueChanges.subscribe(() => {
                 thisDate.updateValueAndValidity();
                 subscription.unsubscribe();
             });
+        }
+
+        // check null
+        if (!beforeDate?.value || !thisDate.value) {
+            return null;
         }
 
         // return validate result
