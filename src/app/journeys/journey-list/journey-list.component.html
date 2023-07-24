@@ -188,6 +188,10 @@
                             </td>
                             <td
                                 class="max-w-[280px] overflow-hidden text-ellipsis whitespace-nowrap"
+                                [pTooltip]="journey.description"
+                                tooltipPosition="top"
+                                [positionTop]="16"
+                                tooltipStyleClass="!min-w-[500px]"
                             >
                                 {{ journey.description }}
                             </td>

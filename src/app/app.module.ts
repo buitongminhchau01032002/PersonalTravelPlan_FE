@@ -16,6 +16,7 @@ import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ToastModule } from 'primeng/toast';
+import { TooltipModule } from 'primeng/tooltip';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -66,6 +67,7 @@ import { ErrorPageComponent } from './error-page/error-page.component';
         PaginatorModule,
         ProgressSpinnerModule,
         ToastModule,
+        TooltipModule,
     ],
     providers: [JourneyService, CurrencyService, CountryService, MessageService],
     bootstrap: [AppComponent],
