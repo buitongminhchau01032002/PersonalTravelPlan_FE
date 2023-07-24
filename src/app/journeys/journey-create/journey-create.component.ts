@@ -55,9 +55,14 @@ export class JourneyCreateComponent implements OnInit {
     }
 
     onChangeStartOrEndDateChange() {
-        // if (this.journeyForm.endDate && this.journeyForm.startDate) {
-        //     console.log(this.journeyForm.endDate.getTime() - this.journeyForm.startDate.getTime());
-        // }
+        if (this.journeyForm.endDate && this.journeyForm.startDate) {
+            const distance = Math.ceil(
+                (this.journeyForm.endDate.getTime() - this.journeyForm.startDate.getTime()) /
+                    (1000 * 60 * 60 * 24)
+            );
+            this.journeyForm.durationDay = distance + 1;
+            this.journeyForm.durationNight = distance;
+        }
     }
 
     onSubmit(f: NgForm) {

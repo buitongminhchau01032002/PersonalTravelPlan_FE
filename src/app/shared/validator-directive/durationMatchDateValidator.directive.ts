@@ -57,8 +57,8 @@ export class DurationMatchDateValidator implements Validator {
             return null;
         }
 
-        //const distanceDate = Math.ceil((endDate.value - startDate.value) / (1000 * 60 * 60 * 24));
+        const distanceDate = Math.ceil((endDate.value - startDate.value) / (1000 * 60 * 60 * 24));
 
-        return duration.value > 3 + 1 ? { matchDate: true } : null;
+        return duration.value > distanceDate + 1 ? { matchDate: true } : null;
     }
 }
