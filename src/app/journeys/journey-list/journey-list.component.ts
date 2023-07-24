@@ -73,7 +73,6 @@ export class JourneyListComponent implements OnInit {
     }
 
     onFilter() {
-        console.log('🍎', this.filterQueryForm);
         this.filterQuery = this.getFilterQueryFromForm();
         this.loading = true;
         this.page = 1;

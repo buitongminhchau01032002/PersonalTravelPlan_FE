@@ -32,6 +32,7 @@ import { AfterDateValidatorDirective } from './shared/validator-directive/afterD
 import { GreaterThanValidator } from './shared/validator-directive/greaterThanValidator.directive';
 import { DurationValidator } from './shared/validator-directive/durationValidator.directive';
 import { DurationMatchDateValidator } from './shared/validator-directive/durationMatchDateValidator.directive';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 @NgModule({
     declarations: [
@@ -45,6 +46,7 @@ import { DurationMatchDateValidator } from './shared/validator-directive/duratio
         GreaterThanValidator,
         DurationValidator,
         DurationMatchDateValidator,
+        ErrorPageComponent,
     ],
     imports: [
         BrowserModule,

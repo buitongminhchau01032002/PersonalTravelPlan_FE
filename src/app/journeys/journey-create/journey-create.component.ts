@@ -66,8 +66,6 @@ export class JourneyCreateComponent implements OnInit {
     }
 
     onSubmit(f: NgForm) {
-        console.log(f);
-
         if (f.invalid) {
             this.messageService.add({
                 severity: 'error',
@@ -80,7 +78,6 @@ export class JourneyCreateComponent implements OnInit {
 
         this.journeyService.createJourney(this.journeyForm).subscribe({
             next: (body) => {
-                console.log(body);
                 this.messageService.add({
                     severity: 'success',
                     summary: 'Success',
