@@ -26,6 +26,9 @@
     .btn.btn-green {
         @apply !bg-green-light hover:!bg-emerald-500;
     }
+    .btn.btn-danger {
+        @apply !bg-danger hover:!bg-danger/80;
+    }
     .btn-outline {
         @apply !border-none !text-gray-700 !ring-1 !ring-primary;
     }
