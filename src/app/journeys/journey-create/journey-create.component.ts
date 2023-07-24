@@ -25,7 +25,7 @@ export class JourneyCreateComponent implements OnInit {
     currencies: Currency[] = [];
     countries: Country[] = [];
     allStatus: JourneyStaus[] = ['Planning', 'In progress', 'Finished'];
-    journeyForm: CreateJourneyForm = {};
+    journeyForm: CreateJourneyForm = { status: 'Planning' };
     constructor(
         private journeyService: JourneyService,
         private currencyService: CurrencyService,
