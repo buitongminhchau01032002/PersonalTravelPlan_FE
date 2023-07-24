@@ -31,6 +31,7 @@ import { MessageService } from 'primeng/api';
 import { AfterDateValidatorDirective } from './shared/validator-directive/afterDateValidator.directive';
 import { GreaterThanValidator } from './shared/validator-directive/greaterThanValidator.directive';
 import { DurationValidator } from './shared/validator-directive/durationValidator.directive';
+import { DurationMatchDateValidator } from './shared/validator-directive/durationMatchDateValidator.directive';
 
 @NgModule({
     declarations: [
@@ -43,6 +44,7 @@ import { DurationValidator } from './shared/validator-directive/durationValidato
         AfterDateValidatorDirective,
         GreaterThanValidator,
         DurationValidator,
+        DurationMatchDateValidator,
     ],
     imports: [
         BrowserModule,

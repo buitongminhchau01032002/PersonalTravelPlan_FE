@@ -178,14 +178,17 @@
                     <div>
                         <div class="flex items-center space-x-3">
                             <p-inputNumber
-                                styleClass="max-w-[60px]"
+                                styleClass="w-[60px]"
                                 inputStyleClass="input !w-full"
                                 name="durationDay"
                                 [(ngModel)]="journeyForm.durationDay"
                                 [greaterThanValidator]="0"
+                                durationMatchDateValidator
+                                startDateName="startDate"
+                                endDateName="endDate"
                                 #durationDayCtrl="ngModel"
                             ></p-inputNumber>
-                            <span class="font-bold text-gray-600">day (s)</span>
+                            <span class="whitespace-nowrap font-bold text-gray-600">day (s)</span>
                         </div>
                         <div class="mt-1 text-sm text-danger">
                             <span
@@ -196,19 +199,30 @@
                             >
                                 Value must be greater than 0!
                             </span>
+                            <span
+                                *ngIf="
+                                    durationDayCtrl.touched && durationDayCtrl.errors?.['matchDate']
+                                "
+                            >
+                                Day does not match with Start date and End date!
+                            </span>
                         </div>
                     </div>
                     <div>
                         <div class="flex items-center space-x-3">
                             <p-inputNumber
-                                styleClass="max-w-[60px]"
+                                styleClass="w-[60px]"
                                 inputStyleClass="input !w-full"
                                 name="durationNight"
                                 [(ngModel)]="journeyForm.durationNight"
+                                [greaterThanValidator]="0"
                                 durationValidator="durationDay"
+                                durationMatchDateValidator
+                                startDateName="startDate"
+                                endDateName="endDate"
                                 #durationNightCtrl="ngModel"
                             ></p-inputNumber>
-                            <span class="font-bold text-gray-600">night (s)</span>
+                            <span class="whitespace-nowrap font-bold text-gray-600">night (s)</span>
                         </div>
                         <div class="mt-1 text-sm text-danger">
                             <span
@@ -226,6 +240,14 @@
                                 "
                             >
                                 Value is invalid!
+                            </span>
+                            <span
+                                *ngIf="
+                                    durationNightCtrl.touched &&
+                                    durationNightCtrl.errors?.['matchDate']
+                                "
+                            >
+                                Night does not match with Start date and End date!
                             </span>
                         </div>
                     </div>

@@ -19,11 +19,9 @@ export class DurationValidator implements Validator {
         // get control
         const thisDuration: AbstractControl = c;
         const otherDuration: AbstractControl | null = c.root.get(this.otherDurationName);
-        console.log('validate');
 
         // listen other change to revalidate
         if (otherDuration) {
-            console.log('subscribe');
             const subscription: Subscription = otherDuration.valueChanges.subscribe(() => {
                 thisDuration.updateValueAndValidity();
                 subscription.unsubscribe();
