@@ -6,6 +6,7 @@ import { Currency } from 'src/app/shared/models/currency.model';
 import { CurrencyService } from 'src/app/shared/services/currency.service';
 import { Country } from 'src/app/shared/models/country.model';
 import { CountryService } from 'src/app/shared/services/country.service';
+import { TableRowSelectEvent } from 'primeng/table';
 
 type FilterQuery = {
     search?: string;
@@ -173,5 +174,9 @@ export class JourneyListComponent implements OnInit {
                     });
             });
         }
+    }
+
+    onJourneySelectChange(e: any) {
+        console.log(this.selectedJourneys);
     }
 }
