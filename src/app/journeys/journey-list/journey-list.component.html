@@ -243,8 +243,9 @@
                                         </svg>
                                     </button>
                                     <button
-                                        class="text-danger hover:text-danger/80"
+                                        class="text-danger hover:text-danger/80 disabled:invisible"
                                         (click)="onDeleteSingleJourney(journey.id)"
+                                        [disabled]="journey.status !== 'Planning'"
                                     >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
