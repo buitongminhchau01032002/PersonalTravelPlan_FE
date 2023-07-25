@@ -83,6 +83,7 @@ export class JourneyCreateComponent implements OnInit {
                     summary: 'Success',
                     detail: 'Create journey successfully!',
                 });
+                this.router.navigate(['/journey']);
             },
             error: (err) => {
                 console.log(err);
