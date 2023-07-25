@@ -37,7 +37,7 @@ export class JourneyListComponent implements OnInit {
     filterQueryForm: FilterQuery = {};
     filterQuery: { [key: string]: string | number | boolean } = {};
     loading: boolean = false;
-    idToDelete: number | null = null;
+    idToDeletes: number[] = [];
 
     constructor(
         private journeySevice: JourneyService,
@@ -62,49 +62,20 @@ export class JourneyListComponent implements OnInit {
 
     onPageChange(event: PaginatorState) {
         this.page = event.page ? event.page + 1 : 1;
-        this.loading = true;
-        this.journeySevice
-            .getJourneys({
-                page: this.page,
-                ...this.filterQuery,
-            })
-            .subscribe((body: any) => {
-                this.journeys = body?.data;
-                this.totalRecords = body?.total;
-                this.loading = false;
-            });
+        this.fetchJouneys();
     }
 
     onFilter() {
         this.filterQuery = this.getFilterQueryFromForm();
         this.loading = true;
         this.page = 1;
-        this.journeySevice
-            .getJourneys({
-                page: this.page,
-                ...this.filterQuery,
-            })
-            .subscribe((body: any) => {
-                this.journeys = body?.data;
-                this.totalRecords = body?.total;
-                this.loading = false;
-            });
+        this.fetchJouneys();
     }
 
     onResetFilter() {
         this.filterQuery = {};
         this.filterQueryForm = {};
-        this.loading = true;
-        this.journeySevice
-            .getJourneys({
-                page: this.page,
-                ...this.filterQuery,
-            })
-            .subscribe((body: any) => {
-                this.journeys = body?.data;
-                this.totalRecords = body?.total;
-                this.loading = false;
-            });
+        this.fetchJouneys();
     }
 
     private getFilterQueryFromForm(): {
@@ -146,32 +117,34 @@ export class JourneyListComponent implements OnInit {
         return query as { [key: string]: number | string | boolean };
     }
 
-    onDeleteJourney(id: number) {
-        this.idToDelete = id;
+    fetchJouneys() {
+        this.loading = true;
+        this.journeySevice
+            .getJourneys({
+                page: this.page,
+                ...this.filterQuery,
+            })
+            .subscribe((body: any) => {
+                this.journeys = body?.data;
+                this.totalRecords = body?.total;
+                this.loading = false;
+            });
+    }
+
+    onDeleteSingleJourney(id: number) {
+        this.idToDeletes = [id];
     }
 
     onCancelDeleteJourney() {
-        this.idToDelete = null;
+        this.idToDeletes = [];
     }
 
     onConfirmDeleteJourney() {
-        console.log('🔱 Delete Journey ', this.idToDelete);
-        if (this.idToDelete) {
-            this.journeySevice.deleteJourney(this.idToDelete ?? 0).subscribe((body: any) => {
-                this.idToDelete = null;
-
-                this.filterQuery = this.getFilterQueryFromForm();
-                this.loading = true;
-                this.journeySevice
-                    .getJourneys({
-                        page: this.page,
-                        ...this.filterQuery,
-                    })
-                    .subscribe((body: any) => {
-                        this.journeys = body?.data;
-                        this.totalRecords = body?.total;
-                        this.loading = false;
-                    });
+        console.log('🔱 Delete Journey ', this.idToDeletes);
+        if (this.idToDeletes.length > 0) {
+            this.journeySevice.deleteJourneys(this.idToDeletes).subscribe((body: any) => {
+                this.idToDeletes = [];
+                this.fetchJouneys();
             });
         }
     }

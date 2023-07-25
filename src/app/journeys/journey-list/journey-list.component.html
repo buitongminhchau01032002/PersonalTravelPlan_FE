@@ -245,7 +245,7 @@
                                     </button>
                                     <button
                                         class="text-danger hover:text-danger/80"
-                                        (click)="onDeleteJourney(journey.id)"
+                                        (click)="onDeleteSingleJourney(journey.id)"
                                     >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -327,7 +327,7 @@
 
 <!-- Comfirm delete dialog -->
 <div
-    *ngIf="idToDelete"
+    *ngIf="idToDeletes.length > 0"
     class="fixed inset-0 flex items-center justify-center bg-black/40"
     (click)="onCancelDeleteJourney()"
 >
