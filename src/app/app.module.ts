@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { ButtonModule } from 'primeng/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -35,6 +37,11 @@ import { DurationValidator } from './shared/validator-directive/durationValidato
 import { DurationMatchDateValidator } from './shared/validator-directive/durationMatchDateValidator.directive';
 import { ErrorPageComponent } from './error-page/error-page.component';
 
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http);
+}
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -51,6 +58,13 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     ],
     imports: [
         BrowserModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient],
+            },
+        }),
         AppRoutingModule,
         FormsModule,
         HttpClientModule,

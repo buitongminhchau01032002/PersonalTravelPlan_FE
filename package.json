@@ -18,6 +18,8 @@
     "@angular/platform-browser": "^16.1.0",
     "@angular/platform-browser-dynamic": "^16.1.0",
     "@angular/router": "^16.1.0",
+    "@ngx-translate/core": "^15.0.0",
+    "@ngx-translate/http-loader": "^8.0.0",
     "flag-icons": "^6.7.0",
     "flag-icons-svg": "^0.0.3",
     "primeicons": "^6.0.1",
