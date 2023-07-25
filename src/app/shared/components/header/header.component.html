@@ -30,9 +30,14 @@
     </div>
 
     <!-- RIGHT -->
-    <div class="flex items-center space-x-2 text-sm font-medium">
-        <button class="text-white">EN</button>
-        <span class="text-white">|</span>
-        <button class="text-white/70">FR</button>
+    <div class="flex items-center text-sm font-medium">
+        <button
+            *ngFor="let language of languages"
+            class="border-r-2 border-white px-2 text-white/70 last:border-r-0"
+            [ngClass]="{ '!text-white': language == currentLanguage }"
+            (click)="onLanguageClick(language)"
+        >
+            {{ language | uppercase }}
+        </button>
     </div>
 </div>

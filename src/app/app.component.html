@@ -1,4 +1,8 @@
-<app-header></app-header>
+<app-header
+    [languages]="languages"
+    [currentLanguage]="currentLanguage"
+    (onLanguageChange)="onLanguageChange($event)"
+></app-header>
 
 <div class="flex min-h-screen flex-col bg-bg pt-16">
     <router-outlet></router-outlet>
