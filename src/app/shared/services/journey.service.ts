@@ -14,6 +14,10 @@ export class JourneyService {
         });
     }
 
+    getJourney(id: number): Observable<Journey> {
+        return this.http.get<any>(`${API}/Journey/${id}`);
+    }
+
     createJourney(body: CreateJourneyForm): Observable<Journey> {
         return this.http.post<Journey>(
             `${API}/Journey`,
@@ -23,8 +27,27 @@ export class JourneyService {
                 body.countryId,
                 body.currencyId,
                 body.amount,
-                body.startDate?.toISOString().substring(0, 10),
-                body.endDate?.toISOString().substring(0, 10),
+                this.dateToString(body.startDate),
+                this.dateToString(body.endDate),
+                body.durationDay,
+                body.durationNight,
+                body.placeIds,
+                body.status
+            )
+        );
+    }
+
+    updateJourney(id: number, body: CreateJourneyForm): Observable<Journey> {
+        return this.http.put<Journey>(
+            `${API}/Journey/${id}`,
+            new CreateJourney(
+                body.name,
+                body.description,
+                body.countryId,
+                body.currencyId,
+                body.amount,
+                this.dateToString(body.startDate),
+                this.dateToString(body.endDate),
                 body.durationDay,
                 body.durationNight,
                 body.placeIds,
@@ -43,5 +66,12 @@ export class JourneyService {
 
     private cloneJourneys(journeys: Journey[]): Journey[] {
         return structuredClone(journeys) as Journey[];
+    }
+
+    private dateToString(date?: Date): string | undefined {
+        if (!date) {
+            return undefined;
+        }
+        return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
     }
 }

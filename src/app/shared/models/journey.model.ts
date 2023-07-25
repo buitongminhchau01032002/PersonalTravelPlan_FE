@@ -5,6 +5,9 @@ import { Place } from './place.model';
 export type JourneyStaus = 'In progress' | 'Planning' | 'Finished';
 
 export class Journey {
+    public durationDay?: number;
+    public durationNight?: number;
+    public places?: Place[];
     constructor(
         public id: number,
         public name: string,
@@ -12,8 +15,8 @@ export class Journey {
         public country: Country,
         public currency: Currency,
         public amount: number,
-        public startDate: Date,
-        public endDate: Date,
+        public startDate: string,
+        public endDate: string,
         public status: JourneyStaus
     ) {
         this.name = name;
@@ -23,6 +26,62 @@ export class Journey {
         this.amount = amount;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.status = status;
+    }
+}
+
+export class EditJourney {
+    constructor(
+        public name?: string,
+        public description?: string,
+        public countryId?: number,
+        public currencyId?: number,
+        public amount?: number,
+        public startDate?: string,
+        public endDate?: string,
+        public durationDay?: number,
+        public durationNight?: number,
+        public placeIds?: number[],
+        public status?: JourneyStaus
+    ) {
+        this.name = name;
+        this.description = description;
+        this.countryId = countryId;
+        this.currencyId = currencyId;
+        this.amount = amount;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.durationDay = durationDay;
+        this.durationNight = durationNight;
+        this.placeIds = placeIds;
+        this.status = status;
+    }
+}
+
+export class CreateJourneyForm {
+    constructor(
+        public name?: string,
+        public description?: string,
+        public countryId?: number,
+        public currencyId?: number,
+        public amount?: number,
+        public startDate?: Date,
+        public endDate?: Date,
+        public durationDay?: number,
+        public durationNight?: number,
+        public placeIds?: number[],
+        public status?: JourneyStaus
+    ) {
+        this.name = name;
+        this.description = description;
+        this.countryId = countryId;
+        this.currencyId = currencyId;
+        this.amount = amount;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.durationDay = durationDay;
+        this.durationNight = durationNight;
+        this.placeIds = placeIds;
         this.status = status;
     }
 }
@@ -55,7 +114,7 @@ export class CreateJourney {
     }
 }
 
-export class CreateJourneyForm {
+export class EditJourneyForm {
     constructor(
         public name?: string,
         public description?: string,

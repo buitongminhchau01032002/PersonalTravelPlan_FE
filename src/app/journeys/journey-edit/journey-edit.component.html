@@ -1,1 +1,287 @@
-<p>journey-edit works!</p>
+<div class="flex flex-1 flex-col space-y-4">
+    <!-- TOP BAR -->
+    <div class="flex items-center justify-between">
+        <div class="space-y-1">
+            <h2 class="text-2xl font-bold">Journey</h2>
+            <p class="text-sm text-gray-500">Home / Journey / Edit</p>
+        </div>
+        <p-button
+            routerLink="/journey/create"
+            styleClass="btn btn-green !px-8"
+            label="New journey"
+        ></p-button>
+    </div>
+
+    <!-- WHTIE PANEL -->
+    <form
+        class="flex flex-1 flex-col overflow-hidden rounded-lg bg-white"
+        #f="ngForm"
+        (ngSubmit)="onSubmit(f)"
+    >
+        <div class="border-b px-8 py-4 text-xl font-medium">Edit journey info</div>
+        <div class="flex-1 px-8 py-16">
+            <div class="grid-template-cols mx-auto grid max-w-[1200px] gap-x-6 gap-y-6">
+                <!-- NAME -->
+                <span class="mt-3 font-bold text-gray-600">Name</span>
+                <div class="col-span-3">
+                    <input
+                        class="input w-full"
+                        type="text"
+                        name="name"
+                        pInputText
+                        placeholder="Name"
+                        [(ngModel)]="journeyForm.name"
+                        required
+                        #nameCtrl="ngModel"
+                    />
+                    <div class="mt-1 text-sm text-danger">
+                        <span *ngIf="nameCtrl.touched && nameCtrl.errors?.['required']">
+                            Name is required!
+                        </span>
+                    </div>
+                </div>
+
+                <!-- DESCRIPTION -->
+                <span class="font-bold text-gray-600">Description</span>
+                <div class="col-span-3">
+                    <textarea
+                        rows="5"
+                        pInputTextarea
+                        class="input w-full resize-none"
+                        name="description"
+                        placeholder="Description"
+                        [(ngModel)]="journeyForm.description"
+                        required
+                        #descriptionCtrl="ngModel"
+                    ></textarea>
+                    <div class="text-sm text-danger">
+                        <span
+                            *ngIf="descriptionCtrl.touched && descriptionCtrl.errors?.['required']"
+                        >
+                            Description is required!
+                        </span>
+                    </div>
+                </div>
+
+                <!-- COUNTRY -->
+                <span class="mt-3 font-bold text-gray-600">Country</span>
+                <div>
+                    <p-dropdown
+                        styleClass="input w-full"
+                        placeholder="Select country"
+                        optionValue="id"
+                        optionLabel="name"
+                        [showClear]="true"
+                        name="country"
+                        [options]="countries"
+                        [(ngModel)]="journeyForm.countryId"
+                        (onChange)="onChangeCountry($event)"
+                        [required]="true"
+                        #countryCtrl="ngModel"
+                    ></p-dropdown>
+                    <div class="mt-1 text-sm text-danger">
+                        <span *ngIf="countryCtrl.touched && countryCtrl.errors?.['required']">
+                            Country is required!
+                        </span>
+                    </div>
+                </div>
+
+                <!-- PLACE -->
+                <span class="mt-3 text-right font-bold text-gray-600">Place</span>
+                <div>
+                    <p-multiSelect
+                        styleClass="input w-full"
+                        [options]="places"
+                        [(ngModel)]="journeyForm.placeIds"
+                        optionLabel="name"
+                        optionValue="id"
+                        placeholder="Select places"
+                        name="places"
+                        [filter]="false"
+                    ></p-multiSelect>
+                    <div class="mt-1 text-sm text-danger"></div>
+                </div>
+
+                <!-- START DATE -->
+                <span class="mt-3 font-bold text-gray-600">Start date</span>
+                <div>
+                    <p-calendar
+                        styleClass="w-full"
+                        inputStyleClass="input"
+                        [showClear]="true"
+                        name="startDate"
+                        [(ngModel)]="journeyForm.startDate"
+                        [required]="true"
+                        (ngModelChange)="onChangeStartOrEndDateChange()"
+                        #startDateCtrl="ngModel"
+                    ></p-calendar>
+                    <div class="mt-1 text-sm text-danger">
+                        <span *ngIf="startDateCtrl.touched && startDateCtrl.errors?.['required']">
+                            Start date is required!
+                        </span>
+                    </div>
+                </div>
+
+                <!-- END DATE -->
+                <span class="mt-3 text-right font-bold text-gray-600">End date</span>
+                <div>
+                    <p-calendar
+                        styleClass="w-full"
+                        inputStyleClass="input"
+                        [showClear]="true"
+                        name="endDate"
+                        [(ngModel)]="journeyForm.endDate"
+                        (ngModelChange)="onChangeStartOrEndDateChange()"
+                        #endDateCtrl="ngModel"
+                        appAfterDateValidator="startDate"
+                    ></p-calendar>
+                    <div class="mt-1 text-sm text-danger">
+                        <span *ngIf="endDateCtrl.touched && endDateCtrl.errors?.['afterDate']">
+                            End date must be greater than Start date!
+                        </span>
+                    </div>
+                </div>
+
+                <!-- CURRENCY -->
+                <span class="mt-3 font-bold text-gray-600">Currency</span>
+                <div>
+                    <p-dropdown
+                        styleClass="input w-full"
+                        placeholder="Select currency"
+                        optionValue="id"
+                        optionLabel="name"
+                        [showClear]="true"
+                        name="currency"
+                        [options]="currencies"
+                        [(ngModel)]="journeyForm.currencyId"
+                        #currencyCtrl="ngModel"
+                    ></p-dropdown>
+                    <div class="mt-1 text-sm text-danger">
+                        <span *ngIf="currencyCtrl.touched && currencyCtrl.errors?.['required']">
+                            Currency is required!
+                        </span>
+                    </div>
+                </div>
+
+                <!-- AMOUNT -->
+                <span class="mt-3 text-right font-bold text-gray-600">Amount</span>
+                <div>
+                    <p-inputNumber
+                        class="!w-full"
+                        styleClass="!w-full"
+                        inputStyleClass="input !w-full"
+                        name="amount"
+                        [(ngModel)]="journeyForm.amount"
+                        #amountCtrl="ngModel"
+                    ></p-inputNumber>
+                    <div class="mt-1 text-sm text-danger">
+                        <span *ngIf="amountCtrl.touched && amountCtrl.errors?.['required']">
+                            Currency is required!
+                        </span>
+                    </div>
+                </div>
+
+                <!-- DURATION -->
+                <span class="mt-3 font-bold text-gray-600">Duration</span>
+                <div class="flex items-start justify-between space-x-4">
+                    <div>
+                        <div class="flex items-center space-x-3">
+                            <p-inputNumber
+                                styleClass="w-[60px]"
+                                inputStyleClass="input !w-full"
+                                name="durationDay"
+                                [(ngModel)]="journeyForm.durationDay"
+                                [greaterThanValidator]="0"
+                                durationMatchDateValidator
+                                startDateName="startDate"
+                                endDateName="endDate"
+                                #durationDayCtrl="ngModel"
+                            ></p-inputNumber>
+                            <span class="whitespace-nowrap font-bold text-gray-600">day (s)</span>
+                        </div>
+                        <div class="mt-1 text-sm text-danger">
+                            <span
+                                *ngIf="
+                                    durationDayCtrl.touched &&
+                                    durationDayCtrl.errors?.['greaterThan']
+                                "
+                            >
+                                Value must be greater than 0!
+                            </span>
+                            <span
+                                *ngIf="
+                                    durationDayCtrl.touched && durationDayCtrl.errors?.['matchDate']
+                                "
+                            >
+                                Day does not match with Start date and End date!
+                            </span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-center space-x-3">
+                            <p-inputNumber
+                                styleClass="w-[60px]"
+                                inputStyleClass="input !w-full"
+                                name="durationNight"
+                                [(ngModel)]="journeyForm.durationNight"
+                                [greaterThanValidator]="0"
+                                durationValidator="durationDay"
+                                durationMatchDateValidator
+                                startDateName="startDate"
+                                endDateName="endDate"
+                                #durationNightCtrl="ngModel"
+                            ></p-inputNumber>
+                            <span class="whitespace-nowrap font-bold text-gray-600">night (s)</span>
+                        </div>
+                        <div class="mt-1 text-sm text-danger">
+                            <span
+                                *ngIf="
+                                    durationNightCtrl.touched &&
+                                    durationNightCtrl.errors?.['greaterThan']
+                                "
+                            >
+                                Value must be greater than 0!
+                            </span>
+                            <span
+                                *ngIf="
+                                    durationNightCtrl.touched &&
+                                    durationNightCtrl.errors?.['durationDistance']
+                                "
+                            >
+                                Value is invalid!
+                            </span>
+                            <span
+                                *ngIf="
+                                    durationNightCtrl.touched &&
+                                    durationNightCtrl.errors?.['matchDate']
+                                "
+                            >
+                                Night does not match with Start date and End date!
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STATUS -->
+                <span class="mt-3 text-right font-bold text-gray-600">Status</span>
+                <div>
+                    <p-dropdown
+                        styleClass="input w-full"
+                        placeholder="Select status"
+                        name="status"
+                        [options]="allStatus"
+                        [(ngModel)]="journeyForm.status"
+                    ></p-dropdown>
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-end space-x-3 border-t px-8 py-4">
+            <p-button
+                styleClass="p-button-text btn !font-medium !px-8 !text-gray-600"
+                label="Discard"
+                routerLink="/"
+            ></p-button>
+            <p-button styleClass="btn btn-primary !px-8 " label="Save" type="submit"></p-button>
+        </div>
+    </form>
+</div>

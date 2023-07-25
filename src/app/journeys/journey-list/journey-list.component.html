@@ -226,7 +226,10 @@
                             <!-- ACTION -->
                             <td>
                                 <div class="flex justify-center space-x-3">
-                                    <button class="text-primary hover:text-primary/80">
+                                    <button
+                                        class="text-primary hover:text-primary/80"
+                                        [routerLink]="['/journey', 'edit', journey.id]"
+                                    >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             fill="none"
