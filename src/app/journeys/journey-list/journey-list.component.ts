@@ -38,6 +38,8 @@ export class JourneyListComponent implements OnInit {
     filterQuery: { [key: string]: string | number | boolean } = {};
     loading: boolean = false;
     idToDeletes: number[] = [];
+    isDisabledDeleteBtn: boolean = true;
+    deleteBtnNumberLabel: string = '';
 
     constructor(
         private journeySevice: JourneyService,
@@ -69,6 +71,7 @@ export class JourneyListComponent implements OnInit {
         this.filterQuery = this.getFilterQueryFromForm();
         this.loading = true;
         this.page = 1;
+        this.selectedJourneys = [];
         this.fetchJouneys();
     }
 
@@ -149,7 +152,29 @@ export class JourneyListComponent implements OnInit {
         }
     }
 
-    onJourneySelectChange(e: any) {
-        console.log(this.selectedJourneys);
+    onJourneySelectChange() {
+        if (this.selectedJourneys.length === 0) {
+            this.isDisabledDeleteBtn = true;
+            this.deleteBtnNumberLabel = '';
+            return;
+        }
+
+        this.deleteBtnNumberLabel = '(' + this.selectedJourneys.length + ')';
+        const notPlanningJourney: Journey | undefined = this.selectedJourneys.find(
+            (journey) => journey.status !== 'Planning'
+        );
+
+        if (notPlanningJourney) {
+            this.isDisabledDeleteBtn = true;
+        } else {
+            this.isDisabledDeleteBtn = false;
+        }
+    }
+
+    onDeleteSelectedJourney() {
+        // map to id
+        const ids: number[] = this.selectedJourneys.map((journey) => journey.id);
+        this.idToDeletes = ids;
+        console.log('⛴️ Ids to delete: ', ids);
     }
 }

@@ -163,8 +163,7 @@
                     [value]="journeys"
                     [(selection)]="selectedJourneys"
                     dataKey="id"
-                    (onRowSelect)="onJourneySelectChange($event)"
-                    (onRowUnselect)="onJourneySelectChange($event)"
+                    (selectionChange)="onJourneySelectChange()"
                 >
                     <ng-template pTemplate="header">
                         <tr>
@@ -303,8 +302,9 @@
                 <!-- DELETE BTN -->
                 <p-button
                     styleClass="btn btn-danger"
-                    [label]="'Delete Selected'"
-                    [disabled]="true"
+                    [label]="'Delete Selected ' + deleteBtnNumberLabel"
+                    (onClick)="onDeleteSelectedJourney()"
+                    [disabled]="isDisabledDeleteBtn"
                 ></p-button>
 
                 <!-- PAGINATION -->
