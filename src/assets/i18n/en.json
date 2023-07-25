@@ -1,3 +1,40 @@
 {
+    "Header": {
+        "Journey": "Journey",
+        "Company": "Company",
+        "Customer": "Customer"
+    },
+    "Btn": {
+        "NewJourney": "New journey",
+        "Search": "Search",
+        "Reset": "Reset",
+        "DeleteSelected": "Delete selected"
+    },
+    "Lb": {
+        "Name": "Name",
+        "Description": "Description",
+        "Country": "Country",
+        "Currency": "Currency",
+        "Amount": "Amount",
+        "StartDate": "Start date",
+        "EndDate": "End date",
+        "Status": "Status",
+        "Duration": "Duration",
+        "From": "From",
+        "To": "To",
+        "day": "day",
+        "night": "night"
+    },
+    "Txt": {
+        "Home": "Home",
+        "Journey": "Journey",
+        "Edit": "Edit",
+        "New": "New",
+        "SearchByNameDescription": "Search by Name, Description",
+        "SelectStatus": "Select status",
+        "SelectCountry": "Select country",
+        "SelectCurrency": "Select currency",
+        "Pagination": "Showing {{start}} to {{end}} of {{total}} entries"
+    },
     "JourneyHeading": "Journey"
 }

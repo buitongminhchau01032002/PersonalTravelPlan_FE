@@ -3,12 +3,16 @@
     <div class="flex items-center justify-between">
         <div class="space-y-1">
             <h2 class="text-2xl font-bold">{{ 'JourneyHeading' | translate }}</h2>
-            <p class="text-sm text-gray-500">Home / Journey</p>
+            <div class="text-sm text-gray-500">
+                <span>{{ 'Txt.Home' | translate }}</span>
+                <span> / </span>
+                <span>{{ 'Txt.Journey' | translate }}</span>
+            </div>
         </div>
         <p-button
             routerLink="/journey/create"
             styleClass="btn btn-green !px-8"
-            label="New journey"
+            [label]="'Btn.NewJourney' | translate"
         ></p-button>
     </div>
 
@@ -26,7 +30,7 @@
                             type="text"
                             name="search"
                             pInputText
-                            placeholder="Search by Name, Description"
+                            [placeholder]="'Txt.SearchByNameDescription' | translate"
                             [(ngModel)]="filterQueryForm.search"
                         />
                     </span>
@@ -34,11 +38,11 @@
 
                 <!-- STATUS -->
                 <span class="ml-6 flex items-center justify-end font-bold text-gray-600">
-                    Status
+                    {{ 'Lb.Status' | translate }}
                 </span>
                 <p-dropdown
                     styleClass="input w-full"
-                    placeholder="Select status"
+                    [placeholder]="'Txt.SelectStatus' | translate"
                     [options]="allStatus"
                     [(ngModel)]="filterQueryForm.status"
                     [showClear]="true"
@@ -46,10 +50,12 @@
                 ></p-dropdown>
 
                 <!-- COUNTRY -->
-                <span class="flex items-center font-bold text-gray-600">Country</span>
+                <span class="flex items-center font-bold text-gray-600">{{
+                    'Lb.Country' | translate
+                }}</span>
                 <p-dropdown
                     styleClass="input w-full"
-                    placeholder="Select country"
+                    [placeholder]="'Txt.SelectCountry' | translate"
                     optionValue="id"
                     optionLabel="name"
                     [showClear]="true"
@@ -60,11 +66,11 @@
 
                 <!-- CURRENCY -->
                 <span class="ml-6 flex items-center justify-end font-bold text-gray-600">
-                    Currency
+                    {{ 'Lb.Currency' | translate }}
                 </span>
                 <p-dropdown
                     styleClass="input w-full"
-                    placeholder="Select currency"
+                    [placeholder]="'Txt.SelectCurrency' | translate"
                     optionValue="id"
                     optionLabel="name"
                     [showClear]="true"
@@ -75,8 +81,8 @@
 
                 <!-- AMOUNT FROM -->
                 <div class="ml-6 flex items-center justify-end space-x-4">
-                    <span class="font-bold text-gray-600">Amount</span>
-                    <span class="text-gray-600">From</span>
+                    <span class="font-bold text-gray-600">{{ 'Lb.Amount' | translate }}</span>
+                    <span class="text-gray-600">{{ 'Lb.From' | translate }}</span>
                 </div>
                 <p-inputNumber
                     styleClass="!w-full"
@@ -86,7 +92,9 @@
                 ></p-inputNumber>
 
                 <!-- AMOUNT TO -->
-                <span class="ml-6 flex items-center justify-end text-gray-600">To</span>
+                <span class="ml-6 flex items-center justify-end text-gray-600">{{
+                    'Lb.To' | translate
+                }}</span>
                 <p-inputNumber
                     styleClass="!w-full"
                     inputStyleClass="input !w-full"
@@ -96,8 +104,8 @@
 
                 <!-- START DATE FROM -->
                 <div class="flex items-center space-x-4">
-                    <span class="font-bold text-gray-600">Start date</span>
-                    <span class="text-gray-600">From</span>
+                    <span class="font-bold text-gray-600">{{ 'Lb.StartDate' | translate }}</span>
+                    <span class="text-gray-600">{{ 'Lb.From' | translate }}</span>
                 </div>
                 <p-calendar
                     styleClass="w-full"
@@ -108,7 +116,9 @@
                 ></p-calendar>
 
                 <!-- START DATE TO -->
-                <span class="ml-6 flex items-center justify-end text-gray-600">To</span>
+                <span class="ml-6 flex items-center justify-end text-gray-600">{{
+                    'Lb.To' | translate
+                }}</span>
                 <p-calendar
                     styleClass="w-full"
                     inputStyleClass="input"
@@ -119,8 +129,8 @@
 
                 <!-- END DATE FROM -->
                 <div class="ml-6 flex items-center justify-end space-x-4">
-                    <span class="font-bold text-gray-600">End date</span>
-                    <span class="text-gray-600">From</span>
+                    <span class="font-bold text-gray-600">{{ 'Lb.EndDate' | translate }}</span>
+                    <span class="text-gray-600">{{ 'Lb.From' | translate }}</span>
                 </div>
                 <p-calendar
                     styleClass="w-full"
@@ -131,7 +141,9 @@
                 ></p-calendar>
 
                 <!-- END DATE TO -->
-                <span class="ml-6 flex items-center justify-end text-gray-600">To</span>
+                <span class="ml-6 flex items-center justify-end text-gray-600">{{
+                    'Lb.To' | translate
+                }}</span>
                 <p-calendar
                     styleClass="w-full"
                     inputStyleClass="input"
@@ -145,12 +157,12 @@
             <div class="flex space-x-3">
                 <p-button
                     styleClass="btn btn-primary"
-                    label="Search"
+                    [label]="'Btn.Search' | translate"
                     (onClick)="onFilter()"
                 ></p-button>
                 <p-button
                     styleClass="p-button-outlined btn-outline"
-                    label="Reset"
+                    [label]="'Btn.Reset' | translate"
                     (onClick)="onResetFilter()"
                 ></p-button>
             </div>
@@ -170,14 +182,14 @@
                             <th style="width: 4rem">
                                 <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                             </th>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Country</th>
-                            <th class="!text-center">Start date</th>
-                            <th class="!text-center">End date</th>
-                            <th>Currency</th>
-                            <th class="!text-right">Amount</th>
-                            <th class="!text-center">Status</th>
+                            <th>{{ 'Lb.Name' | translate }}</th>
+                            <th>{{ 'Lb.Description' | translate }}</th>
+                            <th>{{ 'Lb.Country' | translate }}</th>
+                            <th class="!text-center">{{ 'Lb.StartDate' | translate }}</th>
+                            <th class="!text-center">{{ 'Lb.EndDate' | translate }}</th>
+                            <th>{{ 'Lb.Currency' | translate }}</th>
+                            <th class="!text-right">{{ 'Lb.Amount' | translate }}</th>
+                            <th class="!text-center">{{ 'Lb.Status' | translate }}</th>
                             <th></th>
                         </tr>
                     </ng-template>
@@ -306,7 +318,7 @@
                 <!-- DELETE BTN -->
                 <p-button
                     styleClass="btn btn-danger"
-                    [label]="'Delete Selected ' + deleteBtnNumberLabel"
+                    [label]="('Btn.DeleteSelected' | translate) + deleteBtnNumberLabel"
                     (onClick)="onDeleteSelectedJourney()"
                     [disabled]="isDisabledDeleteBtn"
                 ></p-button>
