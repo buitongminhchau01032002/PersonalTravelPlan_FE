@@ -36,5 +36,10 @@
         "SelectCurrency": "Select currency",
         "Pagination": "Showing {{start}} to {{end}} of {{total}} entries"
     },
+    "Status": {
+        "Planning": "Planning",
+        "In progress": "In progress",
+        "Finished": "Finished"
+    },
     "JourneyHeading": "Journey"
 }

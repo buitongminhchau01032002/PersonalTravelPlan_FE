@@ -37,5 +37,10 @@
         "SelectCurrency": "Sélectionner la devise",
         "Pagination": "Affichant {{start}} à {{end}} de {{total}} entrées"
     },
+    "Status": {
+        "Planning": "Planifier",
+        "In progress": "En cours",
+        "Finished": "Terminé"
+    },
     "JourneyHeading": "Voyage"
 }
