@@ -60,6 +60,7 @@ export class JourneyListComponent implements OnInit {
         this.countryService.getCountries().subscribe((body: Country[]) => {
             this.countries = body;
         });
+        console.log(this.filterQueryForm);
     }
 
     onPageChange(event: PaginatorState) {

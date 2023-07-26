@@ -43,6 +43,7 @@
                 <p-dropdown
                     styleClass="input w-full"
                     [placeholder]="'Txt.SelectStatus' | translate"
+                    [autoDisplayFirst]="false"
                     [options]="allStatus"
                     [(ngModel)]="filterQueryForm.status"
                     [showClear]="true"
