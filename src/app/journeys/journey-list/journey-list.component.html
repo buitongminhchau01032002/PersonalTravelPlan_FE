@@ -201,10 +201,19 @@
                             <td>
                                 <p-tableCheckbox [value]="journey"></p-tableCheckbox>
                             </td>
-                            <td
-                                class="max-w-[150px] overflow-hidden text-ellipsis whitespace-nowrap"
-                            >
-                                {{ journey.name }}
+                            <td class="max-w-[190px] !py-2">
+                                <div class="flex items-center space-x-4">
+                                    <img
+                                        src="https://picsum.photos/200/200"
+                                        alt=""
+                                        class="inline-block h-11 w-11 rounded object-cover"
+                                    />
+                                    <span
+                                        class="flex-1 overflow-hidden text-ellipsis whitespace-nowrap"
+                                    >
+                                        {{ journey.name }}
+                                    </span>
+                                </div>
                             </td>
                             <td
                                 class="max-w-[280px] overflow-hidden text-ellipsis whitespace-nowrap"
