@@ -9,6 +9,7 @@
         "Search": "Search",
         "Reset": "Reset",
         "DeleteSelected": "Delete selected",
+        "Delete": "Delete",
         "Create": "Create",
         "Cancel": "Cancel",
         "Save": "Save",
@@ -42,7 +43,9 @@
         "SelectPlace": "Select place",
         "Pagination": "Showing {{start}} to {{end}} of {{total}} entries",
         "NewJourneyInfo": "New journey info",
-        "ErrorPage": "Sorry, a problem has occurred. Please contact to administrator or back to Home page."
+        "ErrorPage": "Sorry, a problem has occurred. Please contact to administrator or back to Home page.",
+        "DeleteConfirm": "Delete confirmation",
+        "WantDelete": "Do you want to delete ?"
     },
     "Mess": {
         "Required": "{{field}} is a required!",

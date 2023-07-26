@@ -381,19 +381,19 @@
                 </svg>
             </div>
             <div class="mt-2 space-y-3">
-                <h3 class="text-lg font-bold text-danger">Delete confirmation</h3>
-                <p class="text-gray-600">Do you want to delete ?</p>
+                <h3 class="text-lg font-bold text-danger">{{ 'Txt.DeleteConfirm' | translate }}</h3>
+                <p class="text-gray-600">{{ 'Txt.WantDelete' | translate }}</p>
             </div>
         </div>
         <div class="mt-6 flex justify-end space-x-3">
             <p-button
                 styleClass="p-button-outlined btn-outline"
-                label="Cancel"
+                [label]="'Btn.Cancel' | translate"
                 (click)="onCancelDeleteJourney()"
             ></p-button>
             <p-button
                 styleClass="btn btn-danger"
-                label="Delete"
+                [label]="'Btn.Delete' | translate"
                 (click)="onConfirmDeleteJourney()"
             ></p-button>
         </div>

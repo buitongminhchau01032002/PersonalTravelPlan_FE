@@ -9,6 +9,7 @@
         "Search": "Recherche",
         "Reset": "Réinitialiser",
         "DeleteSelected": "Supprimer sélectionnée",
+        "Delete": "Supprimer",
         "Create": "Créer",
         "Cancel": "Annuler",
         "Save": "Sauvegarder",
@@ -42,7 +43,9 @@
         "SelectPlace": "Sélectionner la lieu",
         "Pagination": "Affichant {{start}} à {{end}} de {{total}} entrées",
         "NewJourneyInfo": "Nouvelle info sur le voyage",
-        "ErrorPage": "Désolé. Un problème est survenu. Veuillez contacter l'administrateur ou revenir à la page d'accueil."
+        "ErrorPage": "Désolé. Un problème est survenu. Veuillez contacter l'administrateur ou revenir à la page d'accueil.",
+        "DeleteConfirm": "Supprimer la confirmation",
+        "WantDelete": "Vouler-vous supprimer ?"
     },
     "Mess": {
         "Required": "{{field}} est obligatoire!",
