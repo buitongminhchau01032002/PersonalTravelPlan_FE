@@ -327,8 +327,15 @@
                 <!-- PAGINATION -->
                 <div class="flex items-center">
                     <p class="text-gray-500">
-                        Showing {{ (page - 1) * 5 + 1 }} to
-                        {{ (page - 1) * 5 + journeys.length }} of {{ totalRecords }} entries
+                        {{
+                            'Txt.Pagination'
+                                | translate
+                                    : {
+                                          start: (page - 1) * 5 + 1,
+                                          end: (page - 1) * 5 + journeys.length,
+                                          total: totalRecords
+                                      }
+                        }}
                     </p>
                     <p-paginator
                         (onPageChange)="onPageChange($event)"
