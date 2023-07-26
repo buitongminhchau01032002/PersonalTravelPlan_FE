@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MessageService } from 'primeng/api';
+import { TranslateService } from '@ngx-translate/core';
+import { Message, MessageService } from 'primeng/api';
 import { DropdownChangeEvent } from 'primeng/dropdown';
+import { Subscription } from 'rxjs';
 import { Country } from 'src/app/shared/models/country.model';
 import { Currency } from 'src/app/shared/models/currency.model';
 import {
@@ -20,18 +22,30 @@ import { JourneyService } from 'src/app/shared/services/journey.service';
     templateUrl: './journey-create.component.html',
     styleUrls: ['./journey-create.component.css'],
 })
-export class JourneyCreateComponent implements OnInit {
+export class JourneyCreateComponent implements OnInit, OnDestroy {
     places: Place[] = [];
     currencies: Currency[] = [];
     countries: Country[] = [];
     allStatus: JourneyStaus[] = ['Planning', 'In progress', 'Finished'];
     journeyForm: CreateJourneyForm = { status: 'Planning' };
+    unsubTranslate?: Subscription;
+    ERROR_MESSAGE: Message = {
+        severity: 'error',
+        summary: 'Error',
+        detail: '',
+    };
+    SUCCESS_MESSAGE: Message = {
+        severity: 'success',
+        summary: 'Success',
+        detail: '',
+    };
     constructor(
         private journeyService: JourneyService,
         private currencyService: CurrencyService,
         private countrySevice: CountryService,
         private messageService: MessageService,
-        private router: Router
+        private router: Router,
+        private translate: TranslateService
     ) {}
 
     ngOnInit(): void {
@@ -41,6 +55,18 @@ export class JourneyCreateComponent implements OnInit {
         this.countrySevice.getCountries().subscribe((body) => {
             this.countries = body;
         });
+
+        // Get translate
+        this.unsubTranslate = this.translate.stream('Mess').subscribe((messObj) => {
+            this.ERROR_MESSAGE.summary = messObj['Error'];
+            this.SUCCESS_MESSAGE.summary = messObj['Success'];
+            this.ERROR_MESSAGE.detail = messObj['PleaseFill'];
+            this.SUCCESS_MESSAGE.detail = messObj['CreateJourneySuccess'];
+        });
+    }
+
+    ngOnDestroy(): void {
+        this.unsubTranslate?.unsubscribe();
     }
 
     onChangeCountry(event: DropdownChangeEvent) {
@@ -67,32 +93,20 @@ export class JourneyCreateComponent implements OnInit {
 
     onSubmit(f: NgForm) {
         if (f.invalid) {
-            this.messageService.add({
-                severity: 'error',
-                summary: 'Error',
-                detail: 'Please fill all required fields!',
-            });
+            this.messageService.add(this.ERROR_MESSAGE);
             f.form.markAllAsTouched();
             return;
         }
 
         this.journeyService.createJourney(this.journeyForm).subscribe({
             next: (body) => {
-                this.messageService.add({
-                    severity: 'success',
-                    summary: 'Success',
-                    detail: 'Create journey successfully!',
-                });
+                this.messageService.add(this.SUCCESS_MESSAGE);
                 this.router.navigate(['/journey']);
             },
             error: (err) => {
                 console.log(err);
                 if (err.status !== 0) {
-                    this.messageService.add({
-                        severity: 'error',
-                        summary: 'Error',
-                        detail: 'Please fill all required fields!',
-                    });
+                    this.messageService.add(this.ERROR_MESSAGE);
                 } else {
                     console.log('🍉 Network error');
                     this.router.navigate(['/error']);

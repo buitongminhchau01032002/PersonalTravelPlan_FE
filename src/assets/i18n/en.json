@@ -8,7 +8,11 @@
         "NewJourney": "New journey",
         "Search": "Search",
         "Reset": "Reset",
-        "DeleteSelected": "Delete selected"
+        "DeleteSelected": "Delete selected",
+        "Create": "Create",
+        "Cancel": "Cancel",
+        "Save": "Save",
+        "Discard": "Discard"
     },
     "Lb": {
         "Name": "Name",
@@ -19,6 +23,7 @@
         "StartDate": "Start date",
         "EndDate": "End date",
         "Status": "Status",
+        "Place": "Place",
         "Duration": "Duration",
         "From": "From",
         "To": "To",
@@ -34,7 +39,22 @@
         "SelectStatus": "Select status",
         "SelectCountry": "Select country",
         "SelectCurrency": "Select currency",
-        "Pagination": "Showing {{start}} to {{end}} of {{total}} entries"
+        "SelectPlace": "Select place",
+        "Pagination": "Showing {{start}} to {{end}} of {{total}} entries",
+        "NewJourneyInfo": "New journey info",
+        "ErrorPage": "Sorry, a problem has occurred. Please contact to administrator or back to Home page."
+    },
+    "Mess": {
+        "Required": "{{field}} is a required!",
+        "EndDateGreaterThanStartDate": "End date must be greater than Start date!",
+        "GreaterThanZero": "Value must be greater than 0!",
+        "ValueIsInvalid": "Value is invalid!",
+        "DayNotMatchDate": "Day does not match with Start date and End date!",
+        "NightNotMatchDate": "Night does not match with Start date and End date!",
+        "PleaseFill": "Please fill all required fields!",
+        "CreateJourneySuccess": "Create journey successfully!",
+        "Error": "Error",
+        "Success": "Success"
     },
     "Status": {
         "Planning": "Planning",

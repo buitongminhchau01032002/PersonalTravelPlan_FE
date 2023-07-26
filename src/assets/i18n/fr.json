@@ -8,7 +8,11 @@
         "NewJourney": "Nouveau voyage",
         "Search": "Recherche",
         "Reset": "Réinitialiser",
-        "DeleteSelected": "Supprimer sélectionnée"
+        "DeleteSelected": "Supprimer sélectionnée",
+        "Create": "Créer",
+        "Cancel": "Annuler",
+        "Save": "Sauvegarder",
+        "Discard": "Rejeter"
     },
     "Lb": {
         "Name": "Nom",
@@ -35,7 +39,22 @@
         "SelectStatus": "Sélectionner le statut",
         "SelectCountry": "Sélectionner le pays",
         "SelectCurrency": "Sélectionner la devise",
-        "Pagination": "Affichant {{start}} à {{end}} de {{total}} entrées"
+        "SelectPlace": "Sélectionner la lieu",
+        "Pagination": "Affichant {{start}} à {{end}} de {{total}} entrées",
+        "NewJourneyInfo": "Nouvelle info sur le voyage",
+        "ErrorPage": "Désolé. Un problème est survenu. Veuillez contacter l'administrateur ou revenir à la page d'accueil."
+    },
+    "Mess": {
+        "Required": "{{field}} est obligatoire!",
+        "EndDateGreaterThanStartDate": "Date de debút doit êtresupérieur à Date de fin!",
+        "GreaterThanZero": "La valeur doit être supérieure à 0!",
+        "ValueIsInvalid": "La valeur n'est pas valide!",
+        "DayNotMatchDate": "Jour n'est pas compatible avec Date de debút et Date de fin!",
+        "NightNotMatchDate": "Nuit n'est pas compatible avec Date de debút et Date de fin!",
+        "PleaseFill": "Veuillez remplir tousles champs obligatoires!",
+        "CreateJourneySuccess": "Créer un parcours avec succès!",
+        "Error": "Erreur",
+        "Success": "Succès"
     },
     "Status": {
         "Planning": "Planifier",
