@@ -20,7 +20,8 @@
         <div class="border-b px-8 py-4 text-xl font-medium">
             {{ 'Txt.NewJourneyInfo' | translate }}
         </div>
-        <div class="mx-auto flex flex-1 items-start space-x-12 px-8 py-16">
+        <div class="mx-auto flex w-full max-w-[1500px] flex-1 items-start space-x-12 px-8 py-16">
+            <!-- IMAGE -->
             <div class="w-[300px]">
                 <div class="relative h-[300px] overflow-hidden rounded-md border bg-bg-input">
                     <img *ngIf="imagePreviewUrl" class="h-full w-full" [src]="imagePreviewUrl" />
@@ -33,7 +34,7 @@
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
-                            stroke-width="1.5"
+                            stroke-width="1"
                             stroke="currentColor"
                             class="h-16 w-16"
                         >
@@ -74,7 +75,9 @@
                     </button>
                 </div>
             </div>
-            <div class="grid-template-cols grid max-w-[1200px] flex-1 gap-x-6 gap-y-6">
+
+            <!-- OTHER FORM -->
+            <div class="grid-template-cols grid flex-1 gap-x-6 gap-y-6">
                 <!-- NAME -->
                 <span class="mt-3 font-bold text-gray-600">{{ 'Lb.Name' | translate }}</span>
                 <div class="col-span-3">
