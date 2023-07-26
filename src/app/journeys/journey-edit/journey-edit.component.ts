@@ -30,6 +30,8 @@ export class JourneyEditComponent implements OnInit {
     allStatus: JourneyStaus[] = ['Planning', 'In progress', 'Finished'];
     journeyForm: EditJourneyForm = { status: 'Planning' };
     id: number = 0;
+    imageUpload?: File;
+    imagePreviewUrl?: string;
     unsubTranslate?: Subscription;
     ERROR_MESSAGE: Message = {
         severity: 'error',
@@ -115,6 +117,26 @@ export class JourneyEditComponent implements OnInit {
             this.journeyForm.durationDay = distance + 1;
             this.journeyForm.durationNight = distance;
         }
+    }
+
+    onSelectImage(event: Event) {
+        this.imageUpload = (event.target as HTMLInputElement)?.files?.[0];
+
+        if (this.imageUpload) {
+            const formData = new FormData();
+
+            formData.append('image', this.imageUpload);
+            this.imagePreviewUrl = URL.createObjectURL(this.imageUpload);
+
+            // todo: handle upload to backend
+            // const upload$ = this.http.post("/api/thumbnail-upload", formData);
+            // upload$.subscribe();
+        }
+    }
+
+    onRemoveImage() {
+        this.imagePreviewUrl = undefined;
+        this.imageUpload = undefined;
     }
 
     onSubmit(f: NgForm) {

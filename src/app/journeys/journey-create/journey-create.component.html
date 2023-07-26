@@ -24,7 +24,11 @@
             <!-- IMAGE -->
             <div class="w-[300px]">
                 <div class="relative h-[300px] overflow-hidden rounded-md border bg-bg-input">
-                    <img *ngIf="imagePreviewUrl" class="h-full w-full" [src]="imagePreviewUrl" />
+                    <img
+                        *ngIf="imagePreviewUrl"
+                        class="h-full w-full object-cover"
+                        [src]="imagePreviewUrl"
+                    />
                     <label
                         class="absolute inset-0 flex cursor-pointer items-center justify-center rounded-md border-primary text-gray-600 hover:border"
                         for="inputImage"
