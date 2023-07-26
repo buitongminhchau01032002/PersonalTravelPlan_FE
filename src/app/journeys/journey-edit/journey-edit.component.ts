@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { MessageService } from 'primeng/api';
+import { TranslateService } from '@ngx-translate/core';
+import { Message, MessageService } from 'primeng/api';
 import { DropdownChangeEvent } from 'primeng/dropdown';
+import { Subscription } from 'rxjs';
 import { Country } from 'src/app/shared/models/country.model';
 import { Currency } from 'src/app/shared/models/currency.model';
 import {
@@ -28,13 +30,25 @@ export class JourneyEditComponent implements OnInit {
     allStatus: JourneyStaus[] = ['Planning', 'In progress', 'Finished'];
     journeyForm: EditJourneyForm = { status: 'Planning' };
     id: number = 0;
+    unsubTranslate?: Subscription;
+    ERROR_MESSAGE: Message = {
+        severity: 'error',
+        summary: '',
+        detail: '',
+    };
+    SUCCESS_MESSAGE: Message = {
+        severity: 'success',
+        summary: '',
+        detail: '',
+    };
     constructor(
         private journeyService: JourneyService,
         private currencyService: CurrencyService,
         private countrySevice: CountryService,
         private messageService: MessageService,
         private router: Router,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private translate: TranslateService
     ) {}
 
     ngOnInit(): void {
@@ -72,6 +86,13 @@ export class JourneyEditComponent implements OnInit {
                 this.places = [];
             }
         });
+        // Get translate
+        this.unsubTranslate = this.translate.stream('Mess').subscribe((messObj) => {
+            this.ERROR_MESSAGE.summary = messObj['Error'];
+            this.SUCCESS_MESSAGE.summary = messObj['Success'];
+            this.ERROR_MESSAGE.detail = messObj['PleaseFill'];
+            this.SUCCESS_MESSAGE.detail = messObj['UpdateJourneySuccess'];
+        });
     }
 
     onChangeCountry(event: DropdownChangeEvent) {
@@ -98,32 +119,20 @@ export class JourneyEditComponent implements OnInit {
 
     onSubmit(f: NgForm) {
         if (f.invalid) {
-            this.messageService.add({
-                severity: 'error',
-                summary: 'Error',
-                detail: 'Please fill all required fields!',
-            });
+            this.messageService.add(this.ERROR_MESSAGE);
             f.form.markAllAsTouched();
             return;
         }
 
         this.journeyService.updateJourney(this.id, this.journeyForm).subscribe({
             next: (body) => {
-                this.messageService.add({
-                    severity: 'success',
-                    summary: 'Success',
-                    detail: 'Edit journey successfully!',
-                });
+                this.messageService.add(this.SUCCESS_MESSAGE);
                 this.router.navigate(['/journey']);
             },
             error: (err) => {
                 console.log(err);
                 if (err.status !== 0) {
-                    this.messageService.add({
-                        severity: 'error',
-                        summary: 'Error',
-                        detail: 'Please fill all required fields!',
-                    });
+                    this.messageService.add(this.ERROR_MESSAGE);
                 } else {
                     console.log('🍉 Network error');
                     this.router.navigate(['/error']);

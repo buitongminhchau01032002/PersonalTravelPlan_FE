@@ -43,6 +43,7 @@
         "SelectPlace": "Sélectionner la lieu",
         "Pagination": "Affichant {{start}} à {{end}} de {{total}} entrées",
         "NewJourneyInfo": "Nouvelle info sur le voyage",
+        "EditJourneyInfo": "Modifier les info sur le voyage",
         "ErrorPage": "Désolé. Un problème est survenu. Veuillez contacter l'administrateur ou revenir à la page d'accueil.",
         "DeleteConfirm": "Supprimer la confirmation",
         "WantDelete": "Vouler-vous supprimer ?"
@@ -56,6 +57,7 @@
         "NightNotMatchDate": "Nuit n'est pas compatible avec Date de debút et Date de fin!",
         "PleaseFill": "Veuillez remplir tousles champs obligatoires!",
         "CreateJourneySuccess": "Créer un parcours avec succès!",
+        "UpdateJourneySuccess": "Mettre à jour le parcours avec succès!",
         "Error": "Erreur",
         "Success": "Succès"
     },

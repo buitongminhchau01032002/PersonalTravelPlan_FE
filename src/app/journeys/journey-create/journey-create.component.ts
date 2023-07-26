@@ -31,12 +31,12 @@ export class JourneyCreateComponent implements OnInit, OnDestroy {
     unsubTranslate?: Subscription;
     ERROR_MESSAGE: Message = {
         severity: 'error',
-        summary: 'Error',
+        summary: '',
         detail: '',
     };
     SUCCESS_MESSAGE: Message = {
         severity: 'success',
-        summary: 'Success',
+        summary: '',
         detail: '',
     };
     constructor(

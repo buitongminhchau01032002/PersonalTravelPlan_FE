@@ -43,6 +43,7 @@
         "SelectPlace": "Select place",
         "Pagination": "Showing {{start}} to {{end}} of {{total}} entries",
         "NewJourneyInfo": "New journey info",
+        "EditJourneyInfo": "Edit journey info",
         "ErrorPage": "Sorry, a problem has occurred. Please contact to administrator or back to Home page.",
         "DeleteConfirm": "Delete confirmation",
         "WantDelete": "Do you want to delete ?"
@@ -56,6 +57,7 @@
         "NightNotMatchDate": "Night does not match with Start date and End date!",
         "PleaseFill": "Please fill all required fields!",
         "CreateJourneySuccess": "Create journey successfully!",
+        "UpdateJourneySuccess": "Update journey successfully!",
         "Error": "Error",
         "Success": "Success"
     },
