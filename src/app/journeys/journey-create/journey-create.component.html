@@ -20,8 +20,61 @@
         <div class="border-b px-8 py-4 text-xl font-medium">
             {{ 'Txt.NewJourneyInfo' | translate }}
         </div>
-        <div class="flex-1 px-8 py-16">
-            <div class="grid-template-cols mx-auto grid max-w-[1200px] gap-x-6 gap-y-6">
+        <div class="mx-auto flex flex-1 items-start space-x-12 px-8 py-16">
+            <div class="w-[300px]">
+                <div class="relative h-[300px] overflow-hidden rounded-md border bg-bg-input">
+                    <img *ngIf="imagePreviewUrl" class="h-full w-full" [src]="imagePreviewUrl" />
+                    <label
+                        class="absolute inset-0 flex cursor-pointer items-center justify-center rounded-md border-primary text-gray-600 hover:border"
+                        for="inputImage"
+                    >
+                        <svg
+                            *ngIf="!imagePreviewUrl"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            class="h-16 w-16"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+                            />
+                        </svg>
+                    </label>
+                    <input
+                        id="inputImage"
+                        type="file"
+                        accept="image/jpeg, image/png, image/jpg"
+                        class="hidden"
+                        (change)="onSelectImage($event)"
+                    />
+                    <button
+                        *ngIf="imagePreviewUrl"
+                        class="absolute right-2 top-2 rounded-full bg-black/40 p-2 text-white hover:bg-black/50"
+                        type="button"
+                        (click)="onRemoveImage()"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            class="h-6 w-6"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M6 18L18 6M6 6l12 12"
+                            />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="grid-template-cols grid max-w-[1200px] flex-1 gap-x-6 gap-y-6">
                 <!-- NAME -->
                 <span class="mt-3 font-bold text-gray-600">{{ 'Lb.Name' | translate }}</span>
                 <div class="col-span-3">
