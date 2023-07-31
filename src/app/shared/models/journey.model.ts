@@ -43,7 +43,8 @@ export class EditJourney {
         public durationDay?: number,
         public durationNight?: number,
         public placeIds?: number[],
-        public status?: JourneyStaus
+        public status?: JourneyStaus,
+        public imageUrl?: string
     ) {
         this.name = name;
         this.description = description;
@@ -56,6 +57,7 @@ export class EditJourney {
         this.durationNight = durationNight;
         this.placeIds = placeIds;
         this.status = status;
+        this.imageUrl = imageUrl;
     }
 }
 
@@ -130,7 +132,8 @@ export class EditJourneyForm {
         public durationDay?: number,
         public durationNight?: number,
         public placeIds?: number[],
-        public status?: JourneyStaus
+        public status?: JourneyStaus,
+        public imageUrl?: string
     ) {
         this.name = name;
         this.description = description;
@@ -143,5 +146,6 @@ export class EditJourneyForm {
         this.durationNight = durationNight;
         this.placeIds = placeIds;
         this.status = status;
+        this.imageUrl = imageUrl;
     }
 }

@@ -1,7 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map, tap } from 'rxjs';
-import { CreateJourney, CreateJourneyForm, Journey } from '../models/journey.model';
+import { Observable, map } from 'rxjs';
+import {
+    CreateJourney,
+    CreateJourneyForm,
+    EditJourney,
+    EditJourneyForm,
+    Journey,
+} from '../models/journey.model';
 import { API, SERVER } from '../../constants';
 
 @Injectable()
@@ -18,9 +24,7 @@ export class JourneyService {
                     total: rawData.total,
                     data: rawData.data.map((journey: any) => ({
                         ...journey,
-                        imageUrl: journey.imageUrl
-                            ? `${SERVER}/${journey.imageUrl}`
-                            : '/assets/images/placeholder.png',
+                        imageUrl: journey.imageUrl ? `${SERVER}/${journey.imageUrl}` : null,
                     })),
                 }))
             );
@@ -50,10 +54,10 @@ export class JourneyService {
         );
     }
 
-    updateJourney(id: number, body: CreateJourneyForm): Observable<Journey> {
+    updateJourney(id: number, body: EditJourneyForm): Observable<Journey> {
         return this.http.put<Journey>(
             `${API}/Journey/${id}`,
-            new CreateJourney(
+            new EditJourney(
                 body.name,
                 body.description,
                 body.countryId,
@@ -64,7 +68,8 @@ export class JourneyService {
                 body.durationDay,
                 body.durationNight,
                 body.placeIds,
-                body.status
+                body.status,
+                body.imageUrl
             )
         );
     }

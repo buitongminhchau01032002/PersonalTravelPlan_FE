@@ -97,7 +97,6 @@ export class JourneyCreateComponent implements OnInit, OnDestroy {
         this.imageUpload = (event.target as HTMLInputElement)?.files?.[0];
 
         if (this.imageUpload) {
-            const formData = new FormData();
             this.imagePreviewUrl = URL.createObjectURL(this.imageUpload);
         }
     }

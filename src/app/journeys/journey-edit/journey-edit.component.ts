@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Message, MessageService } from 'primeng/api';
 import { DropdownChangeEvent } from 'primeng/dropdown';
 import { Subscription } from 'rxjs';
+import { SERVER } from 'src/app/constants';
 import { Country } from 'src/app/shared/models/country.model';
 import { Currency } from 'src/app/shared/models/currency.model';
 import {
@@ -58,6 +59,9 @@ export class JourneyEditComponent implements OnInit {
             this.id = +params['id'];
             this.journeyService.getJourney(this.id).subscribe((journey) => {
                 this.journeyForm = this.transformToJourneyForm(journey);
+                if (journey.imageUrl) {
+                    this.imagePreviewUrl = `${SERVER}/${journey.imageUrl}`;
+                }
 
                 const places: Place[] | undefined = this.countries.find(
                     (c) => c.id === this.journeyForm.countryId
@@ -123,9 +127,6 @@ export class JourneyEditComponent implements OnInit {
         this.imageUpload = (event.target as HTMLInputElement)?.files?.[0];
 
         if (this.imageUpload) {
-            const formData = new FormData();
-
-            formData.append('image', this.imageUpload);
             this.imagePreviewUrl = URL.createObjectURL(this.imageUpload);
         }
     }
@@ -142,20 +143,30 @@ export class JourneyEditComponent implements OnInit {
             return;
         }
 
-        this.journeyService.updateJourney(this.id, this.journeyForm).subscribe({
-            next: (body) => {
-                this.messageService.add(this.SUCCESS_MESSAGE);
-                this.router.navigate(['/journey']);
-            },
-            error: (err) => {
-                console.log(err);
-                if (err.status !== 0) {
-                    this.messageService.add(this.ERROR_MESSAGE);
-                } else {
-                    console.log('🍉 Network error');
-                    this.router.navigate(['/error']);
-                }
-            },
+        this.journeyService.uploadImage(this.imageUpload).subscribe((fileRes) => {
+            const path = fileRes.path;
+
+            // except image when init, not modified
+            if (!(this.imagePreviewUrl && !this.imageUpload)) {
+                this.journeyForm.imageUrl = path;
+            }
+
+            console.log(this.journeyForm);
+            this.journeyService.updateJourney(this.id, this.journeyForm).subscribe({
+                next: (body) => {
+                    this.messageService.add(this.SUCCESS_MESSAGE);
+                    this.router.navigate(['/journey']);
+                },
+                error: (err) => {
+                    console.log(err);
+                    if (err.status !== 0) {
+                        this.messageService.add(this.ERROR_MESSAGE);
+                    } else {
+                        console.log('🍉 Network error');
+                        this.router.navigate(['/error']);
+                    }
+                },
+            });
         });
     }
 
@@ -171,7 +182,8 @@ export class JourneyEditComponent implements OnInit {
             journey.durationDay,
             journey.durationNight,
             journey.places?.map((place) => place.id),
-            journey.status
+            journey.status,
+            journey.imageUrl
         );
     }
 }
