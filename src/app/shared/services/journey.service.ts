@@ -1,17 +1,29 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
 import { CreateJourney, CreateJourneyForm, Journey } from '../models/journey.model';
-import { API } from '../../constants';
+import { API, SERVER } from '../../constants';
 
 @Injectable()
 export class JourneyService {
     constructor(private http: HttpClient) {}
 
-    getJourneys(params?: { [key: string]: string | number }): Observable<Journey[]> {
-        return this.http.get<any>(`${API}/Journey`, {
-            params,
-        });
+    getJourneys(params?: { [key: string]: string | number }): Observable<any> {
+        return this.http
+            .get<any>(`${API}/Journey`, {
+                params,
+            })
+            .pipe(
+                map((rawData) => ({
+                    total: rawData.total,
+                    data: rawData.data.map((journey: any) => ({
+                        ...journey,
+                        imageUrl: journey.imageUrl
+                            ? `${SERVER}/${journey.imageUrl}`
+                            : '/assets/images/placeholder.png',
+                    })),
+                }))
+            );
     }
 
     getJourney(id: number): Observable<Journey> {
@@ -32,7 +44,8 @@ export class JourneyService {
                 body.durationDay,
                 body.durationNight,
                 body.placeIds,
-                body.status
+                body.status,
+                body.imageUrl
             )
         );
     }
@@ -62,6 +75,16 @@ export class JourneyService {
 
     deleteJourneys(ids: number[]): Observable<any> {
         return this.http.delete<{ id: number }>(`${API}/Journey/many`, { body: ids });
+    }
+
+    uploadImage(file?: File): Observable<{ path?: string }> {
+        if (file) {
+            const formData = new FormData();
+            formData.append('file', file);
+            return this.http.post<{ path: string }>(`${API}/Upload`, formData);
+        } else {
+            return new Observable((observer) => observer.next({ path: undefined }));
+        }
     }
 
     private cloneJourneys(journeys: Journey[]): Journey[] {

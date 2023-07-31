@@ -8,6 +8,7 @@ export class Journey {
     public durationDay?: number;
     public durationNight?: number;
     public places?: Place[];
+    public imageUrl?: string;
     constructor(
         public id: number,
         public name: string,
@@ -59,6 +60,7 @@ export class EditJourney {
 }
 
 export class CreateJourneyForm {
+    public imageUrl?: string;
     constructor(
         public name?: string,
         public description?: string,
@@ -98,7 +100,8 @@ export class CreateJourney {
         public durationDay?: number,
         public durationNight?: number,
         public placeIds?: number[],
-        public status?: JourneyStaus
+        public status?: JourneyStaus,
+        public imageUrl?: string
     ) {
         this.name = name;
         this.description = description;
@@ -111,6 +114,7 @@ export class CreateJourney {
         this.durationNight = durationNight;
         this.placeIds = placeIds;
         this.status = status;
+        this.imageUrl = imageUrl;
     }
 }
 

@@ -127,10 +127,6 @@ export class JourneyEditComponent implements OnInit {
 
             formData.append('image', this.imageUpload);
             this.imagePreviewUrl = URL.createObjectURL(this.imageUpload);
-
-            // todo: handle upload to backend
-            // const upload$ = this.http.post("/api/thumbnail-upload", formData);
-            // upload$.subscribe();
         }
     }
 

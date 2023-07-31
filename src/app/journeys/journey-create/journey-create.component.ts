@@ -98,13 +98,7 @@ export class JourneyCreateComponent implements OnInit, OnDestroy {
 
         if (this.imageUpload) {
             const formData = new FormData();
-
-            formData.append('image', this.imageUpload);
             this.imagePreviewUrl = URL.createObjectURL(this.imageUpload);
-
-            // todo: handle upload to backend
-            // const upload$ = this.http.post("/api/thumbnail-upload", formData);
-            // upload$.subscribe();
         }
     }
 
@@ -120,20 +114,25 @@ export class JourneyCreateComponent implements OnInit, OnDestroy {
             return;
         }
 
-        this.journeyService.createJourney(this.journeyForm).subscribe({
-            next: (body) => {
-                this.messageService.add(this.SUCCESS_MESSAGE);
-                this.router.navigate(['/journey']);
-            },
-            error: (err) => {
-                console.log(err);
-                if (err.status !== 0) {
-                    this.messageService.add(this.ERROR_MESSAGE);
-                } else {
-                    console.log('🍉 Network error');
-                    this.router.navigate(['/error']);
-                }
-            },
+        this.journeyService.uploadImage(this.imageUpload).subscribe((fileRes) => {
+            const path = fileRes.path;
+            this.journeyForm.imageUrl = path;
+            console.log(this.journeyForm);
+            this.journeyService.createJourney(this.journeyForm).subscribe({
+                next: (body) => {
+                    this.messageService.add(this.SUCCESS_MESSAGE);
+                    this.router.navigate(['/journey']);
+                },
+                error: (err) => {
+                    console.log(err);
+                    if (err.status !== 0) {
+                        this.messageService.add(this.ERROR_MESSAGE);
+                    } else {
+                        console.log('🍉 Network error');
+                        this.router.navigate(['/error']);
+                    }
+                },
+            });
         });
     }
 }
