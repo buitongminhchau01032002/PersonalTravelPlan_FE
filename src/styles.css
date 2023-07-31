@@ -41,4 +41,9 @@
     .ng-invalid.ng-touched:not(form) .input {
         @apply !border-danger;
     }
+
+    [type='submit'] {
+        appearance: initial;
+        -webkit-appearance: initial;
+    }
 }

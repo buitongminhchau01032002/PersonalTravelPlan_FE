@@ -13,7 +13,8 @@
         "Create": "Create",
         "Cancel": "Cancel",
         "Save": "Save",
-        "Discard": "Discard"
+        "Discard": "Discard",
+        "Login": "Login"
     },
     "Lb": {
         "Name": "Name",
@@ -29,7 +30,9 @@
         "From": "From",
         "To": "To",
         "day": "day",
-        "night": "night"
+        "night": "night",
+        "Username": "Username",
+        "Password": "Password"
     },
     "Txt": {
         "Home": "Home",
@@ -46,7 +49,8 @@
         "EditJourneyInfo": "Edit journey info",
         "ErrorPage": "Sorry, a problem has occurred. Please contact to administrator or back to Home page.",
         "DeleteConfirm": "Delete confirmation",
-        "WantDelete": "Do you want to delete ?"
+        "WantDelete": "Do you want to delete ?",
+        "Login": "Login"
     },
     "Mess": {
         "Required": "{{field}} is a required!",

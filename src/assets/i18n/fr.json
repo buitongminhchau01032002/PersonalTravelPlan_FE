@@ -13,7 +13,8 @@
         "Create": "Créer",
         "Cancel": "Annuler",
         "Save": "Sauvegarder",
-        "Discard": "Rejeter"
+        "Discard": "Rejeter",
+        "Login": "Connexion"
     },
     "Lb": {
         "Name": "Nom",
@@ -29,7 +30,9 @@
         "From": "Depuis",
         "To": "À",
         "day": "jour",
-        "night": "nuit"
+        "night": "nuit",
+        "Username": "Nom d'utilisateur",
+        "Password": "Mot de passe"
     },
     "Txt": {
         "Home": "Accueil",
@@ -46,7 +49,8 @@
         "EditJourneyInfo": "Modifier les info sur le voyage",
         "ErrorPage": "Désolé. Un problème est survenu. Veuillez contacter l'administrateur ou revenir à la page d'accueil.",
         "DeleteConfirm": "Supprimer la confirmation",
-        "WantDelete": "Vouler-vous supprimer ?"
+        "WantDelete": "Vouler-vous supprimer ?",
+        "Login": "Connexion"
     },
     "Mess": {
         "Required": "{{field}} est obligatoire!",
