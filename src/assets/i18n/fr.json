@@ -14,7 +14,8 @@
         "Cancel": "Annuler",
         "Save": "Sauvegarder",
         "Discard": "Rejeter",
-        "Login": "Connexion"
+        "Login": "Connexion",
+        "Register": "S'inscrire"
     },
     "Lb": {
         "Name": "Nom",
@@ -50,7 +51,10 @@
         "ErrorPage": "Désolé. Un problème est survenu. Veuillez contacter l'administrateur ou revenir à la page d'accueil.",
         "DeleteConfirm": "Supprimer la confirmation",
         "WantDelete": "Vouler-vous supprimer ?",
-        "Login": "Connexion"
+        "Login": "Connexion",
+        "Register": "S'inscrire",
+        "DontHaveAccount": "Vous n'avez pas de compte?",
+        "HaveAccount": "Vous avez déjà un compte?"
     },
     "Mess": {
         "Required": "{{field}} est obligatoire!",

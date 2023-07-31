@@ -14,7 +14,8 @@
         "Cancel": "Cancel",
         "Save": "Save",
         "Discard": "Discard",
-        "Login": "Login"
+        "Login": "Login",
+        "Register": "Register"
     },
     "Lb": {
         "Name": "Name",
@@ -50,7 +51,10 @@
         "ErrorPage": "Sorry, a problem has occurred. Please contact to administrator or back to Home page.",
         "DeleteConfirm": "Delete confirmation",
         "WantDelete": "Do you want to delete ?",
-        "Login": "Login"
+        "Login": "Login",
+        "Register": "Register",
+        "DontHaveAccount": "Don't have account?",
+        "HaveAccount": "Already have an account?"
     },
     "Mess": {
         "Required": "{{field}} is a required!",

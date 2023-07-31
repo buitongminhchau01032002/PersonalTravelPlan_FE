@@ -1,5 +1,5 @@
 <form class="min-w-[400px] rounded-md bg-white p-6 shadow-sm" #f="ngForm" (ngSubmit)="onSubmit(f)">
-    <p class="mb-3 text-center text-4xl font-bold">{{ 'Txt.Login' | translate }}</p>
+    <p class="mb-3 text-center text-4xl font-bold">{{ 'Txt.Register' | translate }}</p>
     <div>
         <label class="font-bold leading-9 text-gray-600">{{ 'Lb.Username' | translate }}</label>
         <input
@@ -8,7 +8,7 @@
             type="text"
             name="username"
             [placeholder]="'Lb.Username' | translate"
-            [(ngModel)]="loginForm.username"
+            [(ngModel)]="registerForm.username"
             required
             #usernameCtrl="ngModel"
         />
@@ -26,7 +26,7 @@
             type="password"
             name="password"
             [placeholder]="'Lb.Password' | translate"
-            [(ngModel)]="loginForm.password"
+            [(ngModel)]="registerForm.password"
             required
             #passwordCtrl="ngModel"
         />
@@ -38,17 +38,17 @@
     </div>
     <p-button
         styleClass="btn btn-primary !w-full !mt-5"
-        [label]="'Btn.Login' | translate"
+        [label]="'Btn.Register' | translate"
         type="submit"
     ></p-button>
 
     <div class="mt-3 flex items-center justify-center space-x-2">
-        <span class="text-gray-500">{{ 'Txt.DontHaveAccount' | translate }}</span>
+        <span class="text-gray-500">{{ 'Txt.HaveAccount' | translate }}</span>
         <a
             class="cursor-pointer font-medium text-primary hover:text-primary/80"
-            routerLink="/register"
+            routerLink="/login"
         >
-            {{ 'Btn.Register' | translate }}
+            {{ 'Btn.Login' | translate }}
         </a>
     </div>
 </form>

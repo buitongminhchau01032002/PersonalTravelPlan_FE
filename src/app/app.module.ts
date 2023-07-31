@@ -37,6 +37,7 @@ import { DurationValidator } from './shared/validator-directive/durationValidato
 import { DurationMatchDateValidator } from './shared/validator-directive/durationMatchDateValidator.directive';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { RegisterPageComponent } from './register-page/register-page.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -57,6 +58,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         DurationMatchDateValidator,
         ErrorPageComponent,
         LoginPageComponent,
+        RegisterPageComponent,
     ],
     imports: [
         BrowserModule,
