@@ -125,6 +125,7 @@ export class JourneyEditComponent implements OnInit {
 
     onSelectImage(event: Event) {
         this.imageUpload = (event.target as HTMLInputElement)?.files?.[0];
+        (event.target as HTMLInputElement).value = '';
 
         if (this.imageUpload) {
             this.imagePreviewUrl = URL.createObjectURL(this.imageUpload);
