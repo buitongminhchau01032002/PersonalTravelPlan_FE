@@ -6,16 +6,17 @@ import { JourneyCreateComponent } from './journeys/journey-create/journey-create
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
+import { authGuard } from './auth.guard';
 
 const routes: Routes = [
     { path: '', redirectTo: '/journey', pathMatch: 'full' },
     { path: 'journey', component: JourneyListComponent },
-    { path: 'journey/create', component: JourneyCreateComponent },
+    { path: 'journey/create', canActivate: [authGuard], component: JourneyCreateComponent },
     { path: 'journey/edit/:id', component: JourneyEditComponent },
     { path: 'error', component: ErrorPageComponent },
     { path: 'login', component: LoginPageComponent },
     { path: 'register', component: RegisterPageComponent },
-    { path: '**', pathMatch: 'full', component: ErrorPageComponent },
+    { path: '**', pathMatch: 'full', redirectTo: 'error' },
 ];
 
 @NgModule({

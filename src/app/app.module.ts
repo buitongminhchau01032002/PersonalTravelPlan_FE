@@ -38,6 +38,7 @@ import { DurationMatchDateValidator } from './shared/validator-directive/duratio
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
+import { AuthService } from './shared/services/auth.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -87,7 +88,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         ToastModule,
         TooltipModule,
     ],
-    providers: [JourneyService, CurrencyService, CountryService, MessageService],
+    providers: [JourneyService, CurrencyService, CountryService, MessageService, AuthService],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
