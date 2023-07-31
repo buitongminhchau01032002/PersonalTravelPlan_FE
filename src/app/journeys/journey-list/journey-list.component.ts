@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { JourneyService } from '../../shared/services/journey.service';
 import { Journey, JourneyStaus } from 'src/app/shared/models/journey.model';
 import { PaginatorState } from 'primeng/paginator';
@@ -6,27 +6,14 @@ import { Currency } from 'src/app/shared/models/currency.model';
 import { CurrencyService } from 'src/app/shared/services/currency.service';
 import { Country } from 'src/app/shared/models/country.model';
 import { CountryService } from 'src/app/shared/services/country.service';
-import { TableRowSelectEvent } from 'primeng/table';
-
-type FilterQuery = {
-    search?: string;
-    status?: JourneyStaus;
-    countryId?: number;
-    currencyId?: number;
-    amountFrom?: number;
-    amountTo?: number;
-    startDateFrom?: Date;
-    startDateTo?: Date;
-    endDateFrom?: Date;
-    endDateTo?: Date;
-};
+import { FilterQueryForm } from 'src/app/shared/models/filter-query-form.model';
 
 @Component({
     selector: 'app-journey-list',
     templateUrl: './journey-list.component.html',
     styleUrls: ['./journey-list.component.css'],
 })
-export class JourneyListComponent implements OnInit {
+export class JourneyListComponent implements OnInit, OnDestroy {
     journeys: Journey[] = [];
     selectedJourneys: Journey[] = [];
     currencies: Currency[] = [];
@@ -34,7 +21,7 @@ export class JourneyListComponent implements OnInit {
     allStatus: JourneyStaus[] = ['Planning', 'In progress', 'Finished'];
     page: number = 1;
     totalRecords: number = 0;
-    filterQueryForm: FilterQuery = {};
+    filterQueryForm: FilterQueryForm = {};
     filterQuery: { [key: string]: string | number | boolean } = {};
     loading: boolean = false;
     idToDeletes: number[] = [];
@@ -49,17 +36,19 @@ export class JourneyListComponent implements OnInit {
 
     ngOnInit(): void {
         this.loading = true;
-        this.journeySevice.getJourneys().subscribe((body: any) => {
-            this.journeys = body?.data;
-            this.totalRecords = body?.total;
-            this.loading = false;
-        });
+        this.filterQueryForm = this.journeySevice.getFilterQueryForm();
+        this.filterQuery = this.getFilterQueryFromForm();
+        this.fetchJouneys();
         this.currencyService.getCurrencies().subscribe((body: Currency[]) => {
             this.currencies = body;
         });
         this.countryService.getCountries().subscribe((body: Country[]) => {
             this.countries = body;
         });
+    }
+
+    ngOnDestroy(): void {
+        this.journeySevice.setFilterQueryForm(this.filterQueryForm);
     }
 
     onPageChange(event: PaginatorState) {

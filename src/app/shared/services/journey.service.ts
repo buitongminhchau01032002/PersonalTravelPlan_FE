@@ -9,9 +9,12 @@ import {
     Journey,
 } from '../models/journey.model';
 import { API, SERVER } from '../../constants';
+import { FilterQueryForm } from '../models/filter-query-form.model';
 
 @Injectable()
 export class JourneyService {
+    private filterQueryForm: FilterQueryForm = {};
+
     constructor(private http: HttpClient) {}
 
     getJourneys(params?: { [key: string]: string | number }): Observable<any> {
@@ -90,6 +93,14 @@ export class JourneyService {
         } else {
             return new Observable((observer) => observer.next({ path: undefined }));
         }
+    }
+
+    getFilterQueryForm() {
+        return structuredClone(this.filterQueryForm) as FilterQueryForm;
+    }
+
+    setFilterQueryForm(filterQueryForm: FilterQueryForm) {
+        this.filterQueryForm = structuredClone(filterQueryForm) as FilterQueryForm;
     }
 
     private cloneJourneys(journeys: Journey[]): Journey[] {
