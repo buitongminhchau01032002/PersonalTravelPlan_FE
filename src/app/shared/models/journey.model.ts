@@ -9,6 +9,7 @@ export class Journey {
     public durationNight?: number;
     public places?: Place[];
     public imageUrl?: string;
+    public image?: string;
     constructor(
         public id: number,
         public name: string,
@@ -44,7 +45,8 @@ export class EditJourney {
         public durationNight?: number,
         public placeIds?: number[],
         public status?: JourneyStaus,
-        public imageUrl?: string
+        public imageUrl?: string,
+        public image?: string
     ) {
         this.name = name;
         this.description = description;
@@ -58,37 +60,25 @@ export class EditJourney {
         this.placeIds = placeIds;
         this.status = status;
         this.imageUrl = imageUrl;
+        this.image = image;
     }
 }
 
-export class CreateJourneyForm {
-    public imageUrl?: string;
-    constructor(
-        public name?: string,
-        public description?: string,
-        public countryId?: number,
-        public currencyId?: number,
-        public amount?: number,
-        public startDate?: Date,
-        public endDate?: Date,
-        public durationDay?: number,
-        public durationNight?: number,
-        public placeIds?: number[],
-        public status?: JourneyStaus
-    ) {
-        this.name = name;
-        this.description = description;
-        this.countryId = countryId;
-        this.currencyId = currencyId;
-        this.amount = amount;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.durationDay = durationDay;
-        this.durationNight = durationNight;
-        this.placeIds = placeIds;
-        this.status = status;
-    }
-}
+export type CreateJourneyForm = {
+    imageUrl?: string;
+    name?: string;
+    description?: string;
+    countryId?: number;
+    currencyId?: number;
+    amount?: number;
+    startDate?: Date;
+    endDate?: Date;
+    durationDay?: number;
+    durationNight?: number;
+    placeIds?: number[];
+    status?: JourneyStaus;
+    image?: string;
+};
 
 export class CreateJourney {
     constructor(
@@ -103,7 +93,8 @@ export class CreateJourney {
         public durationNight?: number,
         public placeIds?: number[],
         public status?: JourneyStaus,
-        public imageUrl?: string
+        public imageUrl?: string,
+        public image?: string
     ) {
         this.name = name;
         this.description = description;
@@ -117,6 +108,7 @@ export class CreateJourney {
         this.placeIds = placeIds;
         this.status = status;
         this.imageUrl = imageUrl;
+        this.image = image;
     }
 }
 
@@ -133,7 +125,8 @@ export class EditJourneyForm {
         public durationNight?: number,
         public placeIds?: number[],
         public status?: JourneyStaus,
-        public imageUrl?: string
+        public imageUrl?: string,
+        public image?: string
     ) {
         this.name = name;
         this.description = description;
@@ -147,5 +140,6 @@ export class EditJourneyForm {
         this.placeIds = placeIds;
         this.status = status;
         this.imageUrl = imageUrl;
+        this.image = image;
     }
 }

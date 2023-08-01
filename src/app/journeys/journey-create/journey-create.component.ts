@@ -7,11 +7,7 @@ import { DropdownChangeEvent } from 'primeng/dropdown';
 import { Subscription } from 'rxjs';
 import { Country } from 'src/app/shared/models/country.model';
 import { Currency } from 'src/app/shared/models/currency.model';
-import {
-    CreateJourney,
-    CreateJourneyForm,
-    JourneyStaus,
-} from 'src/app/shared/models/journey.model';
+import { CreateJourneyForm, JourneyStaus } from 'src/app/shared/models/journey.model';
 import { Place } from 'src/app/shared/models/place.model';
 import { CountryService } from 'src/app/shared/services/country.service';
 import { CurrencyService } from 'src/app/shared/services/currency.service';
@@ -113,25 +109,33 @@ export class JourneyCreateComponent implements OnInit, OnDestroy {
             return;
         }
 
-        this.journeyService.uploadImage(this.imageUpload).subscribe((fileRes) => {
-            const path = fileRes.path;
-            this.journeyForm.imageUrl = path;
-            console.log(this.journeyForm);
-            this.journeyService.createJourney(this.journeyForm).subscribe({
-                next: (body) => {
-                    this.messageService.add(this.SUCCESS_MESSAGE);
-                    this.router.navigate(['/journey']);
-                },
-                error: (err) => {
-                    console.log(err);
-                    if (err.status !== 0) {
-                        this.messageService.add(this.ERROR_MESSAGE);
-                    } else {
-                        console.log('🍉 Network error');
-                        this.router.navigate(['/error']);
-                    }
-                },
-            });
+        if (this.imageUpload) {
+            let reader = new FileReader();
+
+            reader.readAsBinaryString(this.imageUpload);
+            reader.onload = (event: ProgressEvent<FileReader>) => {
+                const binaryString = event.target?.result;
+                const base64textString = btoa(binaryString as string);
+
+                console.log(base64textString);
+            };
+        }
+
+        return;
+        this.journeyService.createJourney(this.journeyForm).subscribe({
+            next: (body) => {
+                this.messageService.add(this.SUCCESS_MESSAGE);
+                this.router.navigate(['/journey']);
+            },
+            error: (err) => {
+                console.log(err);
+                if (err.status !== 0) {
+                    this.messageService.add(this.ERROR_MESSAGE);
+                } else {
+                    console.log('🍉 Network error');
+                    this.router.navigate(['/error']);
+                }
+            },
         });
     }
 }
