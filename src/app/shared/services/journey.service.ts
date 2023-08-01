@@ -34,6 +34,7 @@ export class JourneyService {
                     data: rawData.data.map((journey: any) => ({
                         ...journey,
                         imageUrl: journey.imageUrl ? `${SERVER}/${journey.imageUrl}` : null,
+                        image: journey.image ? `data:image/png;base64,${journey.image}` : null,
                     })),
                 }))
             );
