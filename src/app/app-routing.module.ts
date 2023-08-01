@@ -10,9 +10,9 @@ import { authGuard } from './auth.guard';
 
 const routes: Routes = [
     { path: '', redirectTo: '/journey', pathMatch: 'full' },
-    { path: 'journey', component: JourneyListComponent },
+    { path: 'journey', canActivate: [authGuard], component: JourneyListComponent },
     { path: 'journey/create', canActivate: [authGuard], component: JourneyCreateComponent },
-    { path: 'journey/edit/:id', component: JourneyEditComponent },
+    { path: 'journey/edit/:id', canActivate: [authGuard], component: JourneyEditComponent },
     { path: 'error', component: ErrorPageComponent },
     { path: 'login', component: LoginPageComponent },
     { path: 'register', component: RegisterPageComponent },

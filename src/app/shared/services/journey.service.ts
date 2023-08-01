@@ -10,17 +10,23 @@ import {
 } from '../models/journey.model';
 import { API, SERVER } from '../../constants';
 import { FilterQueryForm } from '../models/filter-query-form.model';
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class JourneyService {
     private filterQueryForm: FilterQueryForm = {};
 
-    constructor(private http: HttpClient) {}
+    constructor(
+        private http: HttpClient,
+        private authService: AuthService
+    ) {}
 
     getJourneys(params?: { [key: string]: string | number }): Observable<any> {
+        const user = this.authService.getUser();
         return this.http
             .get<any>(`${API}/Journey`, {
                 params,
+                headers: { Authorization: 'Bearer ' + user?.token },
             })
             .pipe(
                 map((rawData) => ({
@@ -34,10 +40,14 @@ export class JourneyService {
     }
 
     getJourney(id: number): Observable<Journey> {
-        return this.http.get<any>(`${API}/Journey/${id}`);
+        const user = this.authService.getUser();
+        return this.http.get<any>(`${API}/Journey/${id}`, {
+            headers: { Authorization: 'Bearer ' + user?.token },
+        });
     }
 
     createJourney(body: CreateJourneyForm): Observable<Journey> {
+        const user = this.authService.getUser();
         return this.http.post<Journey>(
             `${API}/Journey`,
             new CreateJourney(
@@ -53,11 +63,13 @@ export class JourneyService {
                 body.placeIds,
                 body.status,
                 body.imageUrl
-            )
+            ),
+            { headers: { Authorization: 'Bearer ' + user?.token } }
         );
     }
 
     updateJourney(id: number, body: EditJourneyForm): Observable<Journey> {
+        const user = this.authService.getUser();
         return this.http.put<Journey>(
             `${API}/Journey/${id}`,
             new EditJourney(
@@ -73,16 +85,24 @@ export class JourneyService {
                 body.placeIds,
                 body.status,
                 body.imageUrl
-            )
+            ),
+            { headers: { Authorization: 'Bearer ' + user?.token } }
         );
     }
 
     deleteJourney(id: number): Observable<any> {
-        return this.http.delete<{ id: number }>(`${API}/Journey/${id}`);
+        const user = this.authService.getUser();
+        return this.http.delete<{ id: number }>(`${API}/Journey/${id}`, {
+            headers: { Authorization: 'Bearer ' + user?.token },
+        });
     }
 
     deleteJourneys(ids: number[]): Observable<any> {
-        return this.http.delete<{ id: number }>(`${API}/Journey/many`, { body: ids });
+        const user = this.authService.getUser();
+        return this.http.delete<{ id: number }>(`${API}/Journey/many`, {
+            body: ids,
+            headers: { Authorization: 'Bearer ' + user?.token },
+        });
     }
 
     uploadImage(file?: File): Observable<{ path?: string }> {
